@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */; };
 		2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD027CBB2E300D998F6 /* AppDelegate.swift */; };
 		2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */; };
 		2431EDDA27CBB2E400D998F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2431EDD927CBB2E400D998F6 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		2431EDCD27CBB2E300D998F6 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2431EDD027CBB2E300D998F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24197EFE27DB91BC00BCC61D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */,
+				24A2A30827D00D050097DA17 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		2431EDC427CBB2E300D998F6 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +77,7 @@
 			children = (
 				2431EDD027CBB2E300D998F6 /* AppDelegate.swift */,
 				24A2A30627D0079D0097DA17 /* TabBarViewController.swift */,
+				24197EFE27DB91BC00BCC61D /* Profile */,
 				24A2A30A27D00D0E0097DA17 /* Controllers */,
 				2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */,
 				2431EDD927CBB2E400D998F6 /* Assets.xcassets */,
@@ -78,7 +90,6 @@
 		24A2A30A27D00D0E0097DA17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				24A2A30827D00D050097DA17 /* ProfileViewController.swift */,
 				24A2A30D27D0123E0097DA17 /* PostViewController.swift */,
 				24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */,
 				24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */,
@@ -161,6 +172,7 @@
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
 				24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */,
 				24A2A30C27D00D5B0097DA17 /* FeedViewController.swift in Sources */,
+				24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */,
 				24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */,
 				24A2A31027D0C3440097DA17 /* Post.swift in Sources */,
 				24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */,
