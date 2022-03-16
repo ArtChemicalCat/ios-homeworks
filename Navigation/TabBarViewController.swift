@@ -11,21 +11,29 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         
-        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
-        let feedViewController = UINavigationController(rootViewController: FeedViewController())
+        let profileViewController: UINavigationController = {
+            
+            let vc = UINavigationController(rootViewController: ProfileViewController())
+            vc.tabBarItem.image = UIImage(systemName: "person.circle")
+            vc.title = "Профиль"
+            vc.toolbar.isHidden = false
+            
+            return vc
+        }()
         
-        profileViewController.tabBarItem.image = UIImage(systemName: "person.circle")
-        feedViewController.tabBarItem.image = UIImage(systemName: "house.circle")
-        profileViewController.navigationItem.title = "Title"
+        let feedViewController: UINavigationController = {
+            
+            let vc = UINavigationController(rootViewController: FeedViewController())
+            vc.tabBarItem.image = UIImage(systemName: "house.circle")
+            vc.title = "Лента"
+            
+            return vc
+        }()
         
-        profileViewController.title = "Профиль"
-        feedViewController.title = "Лента"
-        
-        setViewControllers([profileViewController,
-                            feedViewController],
-                           animated: true)
+        setViewControllers([feedViewController, profileViewController], animated: true)
+        tabBar.isTranslucent = false
     }
 
 }
