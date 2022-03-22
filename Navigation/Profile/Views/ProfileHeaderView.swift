@@ -57,7 +57,7 @@ class ProfileHeaderView: UIView {
     let statusTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
-        
+        textField.placeholder = "Set your status.."
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
@@ -91,14 +91,7 @@ class ProfileHeaderView: UIView {
             nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
             nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20)
         ])
-        
-        NSLayoutConstraint.activate([
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            statusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
+
         NSLayoutConstraint.activate([
             statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
             statusLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20)
@@ -110,6 +103,15 @@ class ProfileHeaderView: UIView {
             statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
+        
+        NSLayoutConstraint.activate([
+            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            statusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -16)
+        ])
+        
     }
     
     required init?(coder: NSCoder) {
