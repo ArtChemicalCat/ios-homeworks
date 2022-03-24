@@ -110,6 +110,7 @@ class ProfileHeaderView: UIView {
     
     @objc
     private func tapAction() {
+        guard let text = statusTextField.text, !text.isEmpty else { return }
         print(statusText)
         statusLabel.text = statusText
         
