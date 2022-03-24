@@ -84,27 +84,19 @@ class ProfileHeaderView: UIView {
             profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             profileImage.widthAnchor.constraint(equalToConstant: screenSize.width * 0.34),
-            profileImage.heightAnchor.constraint(equalToConstant: screenSize.width * 0.34)
-        ])
+            profileImage.heightAnchor.constraint(equalToConstant: screenSize.width * 0.34),
 
-        NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
+
             statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            statusButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+
             statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
-            statusLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20)
-        ])
-        
-        NSLayoutConstraint.activate([
+            statusLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
+
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
             statusTextField.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
@@ -119,6 +111,8 @@ class ProfileHeaderView: UIView {
     @objc
     private func tapAction() {
         print(statusText)
+        statusLabel.text = statusText
+        
     }
     
     @objc
