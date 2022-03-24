@@ -54,7 +54,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    let statusTextField: UITextField = {
+    lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
         
@@ -62,6 +62,7 @@ class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
         textField.textAlignment = .center
+        textField.delegate = self
         
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
@@ -123,4 +124,11 @@ class ProfileHeaderView: UIView {
         }
     }
     
+}
+extension ProfileHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        tapAction()
+        self.endEditing(true)
+        return true
+    }
 }
