@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+//MARK: - Properties
     private var statusText = ""
 
     let profileImage: UIImageView = {
@@ -18,7 +19,7 @@ class ProfileHeaderView: UIView {
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = UIScreen.main.bounds.width * 0.17
         image.clipsToBounds = true
-        
+        image.isUserInteractionEnabled = true
         return image
     }()
     
@@ -41,7 +42,6 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOpacity = 0.7
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-        
         return button
     }()
     
@@ -50,8 +50,15 @@ class ProfileHeaderView: UIView {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Waiting for something..."
         label.textColor = .gray
-        
         return label
+    }()
+    
+    let semitransparentView: UIView = {
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.alpha = 0
+        
+        view.backgroundColor = .white
+        return view
     }()
     
     lazy var statusTextField: UITextField = {
@@ -63,20 +70,19 @@ class ProfileHeaderView: UIView {
         textField.layer.cornerRadius = 12
         textField.textAlignment = .center
         textField.delegate = self
-        
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
-        
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
 
         return textField
     }()
     
+//MARK: - Initialaizers
     init() {
         super.init(frame: .zero)
         
         let screenSize = UIScreen.main.bounds
-        let views = [profileImage, nameLabel, statusButton, statusLabel, statusTextField]
+        let views = [nameLabel, statusButton, statusLabel, statusTextField, semitransparentView, profileImage]
         
         views.forEach({ addSubview($0) })
         views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })
@@ -94,6 +100,7 @@ class ProfileHeaderView: UIView {
             statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
+            
 
             statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
             statusLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
@@ -101,14 +108,16 @@ class ProfileHeaderView: UIView {
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
             statusTextField.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40)
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+//            bottomAnchor.constraint(equalTo: statusButton.bottomAnchor)
         ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+//MARK: - Acrions
     @objc
     private func tapAction() {
         guard let text = statusTextField.text, !text.isEmpty else { return }
@@ -116,7 +125,7 @@ class ProfileHeaderView: UIView {
         statusLabel.text = statusText
         
     }
-    
+        
     @objc
     private func statusTextChanged(_ textField: UITextField) {
         if let text = textField.text {
@@ -125,6 +134,8 @@ class ProfileHeaderView: UIView {
     }
     
 }
+
+//MARK: - UITextFieldDelegate
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         tapAction()
