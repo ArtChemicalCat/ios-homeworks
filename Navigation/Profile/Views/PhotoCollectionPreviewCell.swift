@@ -22,7 +22,6 @@ class PhotoCollectionPreviewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(image)
-        
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: contentView.topAnchor),
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

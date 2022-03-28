@@ -8,8 +8,6 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
-    //так как предыдущие дз еще не проверены, пока что использовал ячейку
-    //как обычную вью, потом при слиянии добавлю ее в UITableView
         
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -31,6 +29,9 @@ class PhotosTableViewCell: UITableViewCell {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.delegate = self
+        view.dataSource = self
+        
         view.register(PhotoCollectionPreviewCell.self, forCellWithReuseIdentifier: PhotoCollectionPreviewCell.id)
         
         return view
@@ -66,4 +67,34 @@ class PhotosTableViewCell: UITableViewCell {
         ])
     }
     
+}
+
+extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.bounds.width - 8 * 6) / 4
+        
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        8
+    }
+    
+}
+
+extension PhotosTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        min(Post.photos.count, 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionPreviewCell.id, for: indexPath) as! PhotoCollectionPreviewCell
+        cell.image.image = Post.photos[indexPath.item]
+        
+        return cell
+    }
 }

@@ -9,36 +9,22 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let photos = [
-        UIImage(named: "Джеймс-Кэмерон"),
-        UIImage(named: "Альфред-Хичкок"),
-        UIImage(named: "Джордж-Лукас"),
-        UIImage(named: "Дэнни-Вильнев"),
-        UIImage(named: "Квентин-Тарантино"),
-        UIImage(named: "Кристофер-Нолан"),
-        UIImage(named: "Дэвид-Финчер"),
-        UIImage(named: "Мартин-Скорсезе"),
-        UIImage(named: "Роберт-Земекис"),
-        UIImage(named: "Стивен-Спилберг")
-    ]
-    
-    let profileHeaderView: ProfileHeaderView = {
-        let view = ProfileHeaderView()
+    lazy var tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .grouped)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        view.dataSource = self
+        view.sectionHeaderHeight = UITableView.automaticDimension
+        view.estimatedSectionHeaderHeight = 280
+        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = 150
+        view.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
+        view.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.id)
+        view.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.id)
         
         return view
     }()
     
-    private lazy var photoTablePreviewCell: PhotosTableViewCell = {
-        let view = PhotosTableViewCell()
-        view.collectionView.delegate = self
-        view.collectionView.dataSource = self
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tap)
-        
-        return view
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,19 +38,15 @@ class ProfileViewController: UIViewController {
     }
     
     private func layout() {
-        view.addSubview(photoTablePreviewCell)
-        view.addSubview(profileHeaderView)
-        photoTablePreviewCell.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            photoTablePreviewCell.topAnchor.constraint(equalTo: profileHeaderView.bottomAnchor),
-            photoTablePreviewCell.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            photoTablePreviewCell.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photoTablePreviewCell.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -74,37 +56,60 @@ class ProfileViewController: UIViewController {
     }
     
 }
-//MARK: - UICollectionViewDelegate
 
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - 8 * 6) / 4
-        
-        return CGSize(width: width, height: width)
+//MARK: - UITableViewDelegate
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.id) as! ProfileHeaderView
+            return header
+            
+        }
+        return nil
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath == IndexPath(row: 0, section: 0) {
+            navigationController?.pushViewController(PhotosViewController(), animated: true)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        8
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath == IndexPath(row: 0, section: 0) {
+            return (view.bounds.width - 8 * 6) / 4 + 80
+        } else {
+            return UITableView.automaticDimension
+        }
     }
+    
 }
-//MARK: - UICollectionViewDataSource
-
-extension ProfileViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        min(photos.count, 4)
+//MARK: - UITableViewDataSource
+extension ProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionPreviewCell.id, for: indexPath) as! PhotoCollectionPreviewCell
-        cell.image.image = photos[indexPath.item]
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        default:
+            return Post.posts.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let post = Post.posts[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            cell.post = post
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.id, for: indexPath) as! PhotosTableViewCell
+            
+            return cell
+        }
         
-        return cell
     }
-    
     
 }

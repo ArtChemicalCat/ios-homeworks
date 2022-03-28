@@ -9,29 +9,6 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    private var photos = [
-        UIImage(named: "Джеймс-Кэмерон"),
-        UIImage(named: "Альфред-Хичкок"),
-        UIImage(named: "Джордж-Лукас"),
-        UIImage(named: "Дэнни-Вильнев"),
-        UIImage(named: "Квентин-Тарантино"),
-        UIImage(named: "Кристофер-Нолан"),
-        UIImage(named: "Дэвид-Финчер"),
-        UIImage(named: "Мартин-Скорсезе"),
-        UIImage(named: "Роберт-Земекис"),
-        UIImage(named: "Джеймс-Кэмерон"),
-        UIImage(named: "Альфред-Хичкок"),
-        UIImage(named: "Джордж-Лукас"),
-        UIImage(named: "Дэнни-Вильнев"),
-        UIImage(named: "Квентин-Тарантино"),
-        UIImage(named: "Кристофер-Нолан"),
-        UIImage(named: "Дэвид-Финчер"),
-        UIImage(named: "Мартин-Скорсезе"),
-        UIImage(named: "Роберт-Земекис"),
-        UIImage(named: "Стивен-Спилберг"),
-        UIImage(named: "Стивен-Спилберг")
-    ]
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -47,7 +24,7 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         
         
-        photos.shuffle()
+        Post.photos.shuffle()
         layout()
     }
     
@@ -99,12 +76,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+        Post.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.id, for: indexPath) as! PhotoCollectionViewCell
-        cell.image.image = photos[indexPath.item]
+        cell.image.image = Post.photos[indexPath.item]
         
         return cell
     }
