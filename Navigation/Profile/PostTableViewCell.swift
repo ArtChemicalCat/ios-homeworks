@@ -8,6 +8,16 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
+    var post: Post? {
+        didSet {
+            authorLabel.text = post?.author
+            postImage.image = UIImage(named: post!.image)
+            postDescriptionTextView.text = post?.description
+            likesLabel.text = "Likes: \(post?.likes ?? 0)"
+            viewLabel.text = "Views: \(post?.views ?? 0)"
+        }
+    }
         
     var authorLabel: UILabel = {
         let label = UILabel()

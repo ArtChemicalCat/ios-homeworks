@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let post = Post(title: "Название поста")
+    let post = Post(title: "Post", author: "", description: "", image: "", likes: 0, views: 0)
     
     let firstButton: UIButton = {
         let button = UIButton()

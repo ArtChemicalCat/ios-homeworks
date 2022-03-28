@@ -12,16 +12,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
-//        let profileViewController: UINavigationController = {
-//
-//            let vc = UINavigationController(rootViewController: ProfileViewController())
-//            vc.tabBarItem.image = UIImage(systemName: "person.circle")
-//            vc.title = "Профиль"
-//
-//            return vc
-//        }()
-        
+                
         let logInViewController: UINavigationController = {
             let vc = UINavigationController(rootViewController: LogInViewController())
             vc.tabBarItem.image = UIImage(systemName: "person.circle")
