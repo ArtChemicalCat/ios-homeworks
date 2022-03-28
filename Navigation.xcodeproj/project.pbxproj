@@ -19,6 +19,7 @@
 		24A2A30C27D00D5B0097DA17 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */; };
 		24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30D27D0123E0097DA17 /* PostViewController.swift */; };
 		24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */; };
+		24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		24A2A30D27D0123E0097DA17 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */,
 				24A2A30827D00D050097DA17 /* ProfileViewController.swift */,
 				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
+				24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */,
 				24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */,
 				2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */,
+				24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */,
 				2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */,
 				2480ED8427E871A4000CBFBD /* Post.swift in Sources */,
 			);

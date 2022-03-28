@@ -110,6 +110,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc
     private func tapAction() {
+
+        guard let text = statusTextField.text, !text.isEmpty else { return }
+        print(statusText)
         statusLabel.text = statusText
     }
     
@@ -124,7 +127,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        statusLabel.text = statusText
+        tapAction()
+        self.endEditing(true)
         return true
     }
 }
