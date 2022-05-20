@@ -11,20 +11,21 @@ import StorageService
 class ProfileViewController: UIViewController {
     //MARK: - Views
     lazy var tableView: UITableView = {
-            let view = UITableView(frame: .zero, style: .grouped)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.delegate = self
-            view.dataSource = self
-            view.sectionHeaderHeight = UITableView.automaticDimension
-            view.estimatedSectionHeaderHeight = 280
-            view.rowHeight = UITableView.automaticDimension
-            view.estimatedRowHeight = 150
-            view.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
-            view.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.id)
-            view.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.id)
-            
-            return view
-        }()
+        let view = UITableView(frame: .zero, style: .grouped)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        view.delegate = self
+        view.dataSource = self
+        view.sectionHeaderHeight = UITableView.automaticDimension
+        view.estimatedSectionHeaderHeight = 280
+        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = 150
+        view.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
+        view.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.id)
+        view.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.id)
+        
+        return view
+    }()
     
     let myButton: UIButton = {
         let button = UIButton(type: .system)
@@ -54,11 +55,16 @@ class ProfileViewController: UIViewController {
         title = "Профиль"
         navigationItem.hidesBackButton = true
         layout()
+        
+        #if DEBUG
+        view.backgroundColor = .systemYellow
+        #else
+        view.backgroundColor = .systemBackground
+        #endif
 }
     
 //MARK: - Layout
     private func layout() {
-        view.backgroundColor = .lightGray
         [myButton, tableView, closeButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
