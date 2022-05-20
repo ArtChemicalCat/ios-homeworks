@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
     
-    let post = Post(title: "Post", author: "", description: "", image: "", likes: 0, views: 0)
+    let post = Post(author: "", description: "", image: "", likes: 0, views: 0)
     
     lazy var firstButton: UIButton = {
         let button = UIButton()
@@ -61,7 +62,7 @@ class FeedViewController: UIViewController {
     
     @objc func showPost(sender: UIButton!) {
         let vc = PostViewController()
-        vc.navigationItem.title = post.title
+        vc.navigationItem.title = "Пост"
         navigationController?.pushViewController(vc, animated: true)
     }
 }
