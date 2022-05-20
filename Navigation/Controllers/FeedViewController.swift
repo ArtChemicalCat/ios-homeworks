@@ -11,7 +11,7 @@ class FeedViewController: UIViewController {
     
     let post = Post(title: "Post", author: "", description: "", image: "", likes: 0, views: 0)
     
-    let firstButton: UIButton = {
+    lazy var firstButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
@@ -21,7 +21,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
-    let secondButton: UIButton = {
+    lazy var secondButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()

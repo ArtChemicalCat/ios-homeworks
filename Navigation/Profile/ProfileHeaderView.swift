@@ -10,6 +10,7 @@ import Combine
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
+//MARK: - Properties
     private var statusText = ""
     var subscription = Set<AnyCancellable>()
 
@@ -20,7 +21,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = 75
         image.clipsToBounds = true
-        
+        image.isUserInteractionEnabled = true
         return image
     }()
     
@@ -43,7 +44,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOpacity = 0.7
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-        
         return button
     }()
     
@@ -52,8 +52,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Waiting for something..."
         label.textColor = .gray
-        
         return label
+    }()
+    
+    let semitransparentView: UIView = {
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.alpha = 0
+        
+        view.backgroundColor = .white
+        return view
     }()
     
     lazy var statusTextField: UITextField = {
@@ -64,6 +71,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.cornerRadius = 12
         textField.textAlignment = .center
+        textField.delegate = self
         textField.font = .systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.delegate = self
@@ -75,7 +83,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        let views = [profileImage, nameLabel, statusButton, statusLabel, statusTextField]
+        let screenSize = UIScreen.main.bounds
+        let views = [nameLabel, statusButton, statusLabel, statusTextField, semitransparentView, profileImage]
         
         views.forEach({ contentView.addSubview($0) })
         views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })
@@ -107,7 +116,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+//MARK: - Acrions
     @objc
     private func tapAction() {
 
@@ -115,7 +125,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         print(statusText)
         statusLabel.text = statusText
     }
-    
+        
     @objc
     private func statusTextChanged(_ textField: UITextField) {
         if let text = textField.text {
@@ -125,6 +135,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
 }
 
+//MARK: - UITextFieldDelegate
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         tapAction()
