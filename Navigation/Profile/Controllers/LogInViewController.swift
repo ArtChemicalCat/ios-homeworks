@@ -103,8 +103,6 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        navigationController?.navigationBar.isHidden = true
-        
         keyboardSizePublisher
             .sink { [unowned self] height in
                 self.scrollView.contentInset.bottom = height
