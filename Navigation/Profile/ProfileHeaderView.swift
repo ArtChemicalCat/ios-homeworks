@@ -83,7 +83,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        let screenSize = UIScreen.main.bounds
         let views = [nameLabel, statusButton, statusLabel, statusTextField, semitransparentView, profileImage]
         
         views.forEach({ contentView.addSubview($0) })
