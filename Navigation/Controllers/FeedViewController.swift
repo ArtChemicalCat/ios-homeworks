@@ -8,22 +8,55 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var postButton: UIButton!
-    let post = Post(title: "Название поста")
+    
+    let post = Post(title: "Post", author: "", description: "", image: "", likes: 0, views: 0)
+    
+    lazy var firstButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .bordered()
+        button.setTitle("Пост", for: .normal)
+        button.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var secondButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .bordered()
+        button.setTitle("Пост", for: .normal)
+        button.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        
+        return stackView
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Лента"
+        layout()
+    }
+    
+    private func layout() {
         view.backgroundColor = .systemBackground
-        
-        let screenHeight = UIScreen.main.bounds.height
-        let screenWidth = UIScreen.main.bounds.width
-        postButton = UIButton(frame: CGRect(x: screenWidth * 0.2, y: screenHeight / 3, width: screenWidth * 0.6, height: 100))
-        postButton.setTitle("Пост", for: .normal)
-        postButton.configuration = .bordered()
-        postButton.addTarget(self, action: #selector(showPost), for: .touchUpInside)
-        
-        view.addSubview(postButton)
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(firstButton)
+        stackView.addArrangedSubview(secondButton)
+
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     @objc func showPost(sender: UIButton!) {
