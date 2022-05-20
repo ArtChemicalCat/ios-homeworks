@@ -31,7 +31,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    let statusButton: UIButton = {
+    lazy var statusButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4

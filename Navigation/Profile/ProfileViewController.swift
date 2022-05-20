@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
-    let closeButton: UIButton = {
+    lazy var closeButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.backgroundColor = .red
@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         layout()
         navigationController?.navigationBar.isHidden = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageDidTapped))
         profileHeaderView.profileImage.addGestureRecognizer(tapGesture)
     }
     
@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController {
     }
     
 //MARK: - Actions
-    @objc private func tapAction() {
+    @objc private func profileImageDidTapped() {
         originalAvatarPosition = profileHeaderView.profileImage.center
         let scale = UIScreen.main.bounds.width / self.profileHeaderView.profileImage.bounds.width
         UIView.animate(withDuration: 0.5) {
