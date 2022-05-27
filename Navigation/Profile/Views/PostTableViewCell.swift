@@ -7,19 +7,28 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
+    //MARK: - Properties
+    private let imageProcessor = ImageProcessor()
     
     var post: Post? {
         didSet {
-            authorLabel.text = post?.author
-            postImage.image = UIImage(named: post!.image)
-            postDescriptionTextView.text = post?.description
-            likesLabel.text = "Likes: \(post?.likes ?? 0)"
-            viewLabel.text = "Views: \(post?.views ?? 0)"
+            guard let post = post else { return }
+            authorLabel.text = post.author
+            
+            if let image = UIImage(named: post.image) {
+                postImage.image = applyRandomFilter(to: image)
+            }
+            
+            postDescriptionTextView.text = post.description
+            likesLabel.text = "Likes: \(post.likes)"
+            viewLabel.text = "Views: \(post.views)"
         }
     }
-        
+    
+    //MARK: - Veiws
     var authorLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -62,13 +71,27 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    //MARK: - Initialisers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         configureContent()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Metods
+    private func applyRandomFilter(to image: UIImage) -> UIImage {
+        let filter = ColorFilter.allCases.randomElement()!
+        var processedImage = image
+        imageProcessor.processImage(sourceImage: image, filter: filter) { image in
+            guard let image = image else { return }
+            processedImage = image
+        }
+        
+        return processedImage
     }
     
     private func configureContent() {

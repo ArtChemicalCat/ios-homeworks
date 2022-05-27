@@ -86,7 +86,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let views = [nameLabel, statusButton, statusLabel, statusTextField, semitransparentView, profileImage]
         
         views.forEach({ contentView.addSubview($0) })
-//        views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })
         
         profileImage.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(16)
@@ -115,30 +114,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(40)
         }
-        
-//        NSLayoutConstraint.activate([
-//            profileImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-//            profileImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            profileImage.widthAnchor.constraint(equalToConstant: 150),
-//            profileImage.heightAnchor.constraint(equalToConstant: 150),
-//
-//            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
-//            nameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
-//
-//            statusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            statusButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-//            statusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-//            statusButton.heightAnchor.constraint(equalToConstant: 50),
-//            contentView.bottomAnchor.constraint(equalTo: statusButton.bottomAnchor, constant: 16),
-//
-//            statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 50),
-//            statusLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
-//
-//            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 16),
-//            statusTextField.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
-//            statusTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-//            statusTextField.heightAnchor.constraint(equalToConstant: 40)
-//        ])
     }
     
     required init?(coder: NSCoder) {

@@ -27,14 +27,6 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
-    let myButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Tap me!", for: .normal)
-        button.configuration = .bordered()
-        return button
-    }()
-    
     lazy var closeButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -65,7 +57,7 @@ class ProfileViewController: UIViewController {
     
 //MARK: - Layout
     private func layout() {
-        [myButton, tableView, closeButton].forEach {
+        [tableView, closeButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -76,10 +68,6 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            myButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            myButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            myButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
             
