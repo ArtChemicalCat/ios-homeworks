@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import StorageService
 
 class LogInViewController: UIViewController {
     
@@ -155,7 +156,31 @@ class LogInViewController: UIViewController {
     
     @objc
     private func loginAction() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        var userService: UserService = CurrentUserService()
+        #if DEBUG
+        userService = TestUserService()
+        #endif
+        
+        guard let email = loginTextField.text, userService.getUser(with: email) != nil else {
+            var emailAdress = "artchemist@yandex.ru"
+            #if DEBUG
+            emailAdress = "123@mail.com"
+            #endif
+            
+            presentAlert(with: "Неверный email адрес, попробуйте: \(emailAdress)")
+            return
+        }
+        
+        let profileVC = ProfileViewController(email: email, userService: userService)
+        
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    private func presentAlert(with message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
         
 }

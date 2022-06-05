@@ -36,26 +36,39 @@ class ProfileViewController: UIViewController {
         
         return button
     }()
-
     
-//MARK: - Properties
+    
+    //MARK: - Properties
     private lazy var originalAvatarPosition: CGPoint = .zero
-        
-//MARK: - Lifecycle
+    private let userService: UserService
+    private let email: String
+    
+    //MARK: - Initialisers
+    init(email: String, userService: UserService) {
+        self.userService = userService
+        self.email = email
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Профиль"
         navigationItem.hidesBackButton = true
         layout()
         
-        #if DEBUG
+#if DEBUG
         view.backgroundColor = .systemYellow
-        #else
+#else
         view.backgroundColor = .systemBackground
-        #endif
-}
+#endif
+    }
     
-//MARK: - Layout
+    //MARK: - Layout
     private func layout() {
         [tableView, closeButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +87,7 @@ class ProfileViewController: UIViewController {
         ])
     }
     
-//MARK: - Actions
+    //MARK: - Actions
     @objc private func profileImageDidTapped() {
         tableView.isScrollEnabled = false
         let header = tableView.headerView(forSection: 0) as! ProfileHeaderView
@@ -82,7 +95,7 @@ class ProfileViewController: UIViewController {
         let scale = UIScreen.main.bounds.width / header.profileImage.bounds.width
         UIView.animate(withDuration: 0.5) {
             header.profileImage.center = CGPoint(x: UIScreen.main.bounds.midX,
-                                                                 y: UIScreen.main.bounds.midY - header.profileImage.bounds.midY)
+                                                 y: UIScreen.main.bounds.midY - header.profileImage.bounds.midY)
             header.profileImage.transform = CGAffineTransform(scaleX: scale, y: scale)
             header.profileImage.layer.cornerRadius = 0
             header.semitransparentView.alpha = 0.5
@@ -92,12 +105,12 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
+    
     @objc private func closeButtonAction() {
         tableView.isScrollEnabled = true
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0
-
+            
         } completion: { _ in
             UIView.animate(withDuration: 0.5) { [unowned self] in
                 let profileHeaderView = tableView.headerView(forSection: 0) as! ProfileHeaderView
@@ -113,18 +126,7 @@ class ProfileViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-            2
-        }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: ProfileHeaderView.self)) as! ProfileHeaderView
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageDidTapped))
-        headerView.addGestureRecognizer(tapGesture)
-        
-        if section == 0 {
-            return headerView
-        }
-        return nil
+        2
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -164,6 +166,18 @@ extension ProfileViewController: UITableViewDataSource {
             cell.collectionView.delegate = self
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: ProfileHeaderView.self)) as! ProfileHeaderView
+        headerView.user = userService.getUser(with: email)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageDidTapped))
+        headerView.addGestureRecognizer(tapGesture)
+        
+        if section == 0 {
+            return headerView
+        }
+        return nil
     }
 }
 

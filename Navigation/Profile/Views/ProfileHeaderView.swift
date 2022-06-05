@@ -8,16 +8,25 @@
 import UIKit
 import SnapKit
 import Combine
+import StorageService
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
 //MARK: - Properties
     private var statusText = ""
     var subscription = Set<AnyCancellable>()
+    var user: User? {
+        didSet {
+            guard let user = user else { return }
 
+            profileImage.image = user.avatarImage
+            nameLabel.text = user.fullName
+            statusLabel.text = user.status.isEmpty ? "Waiting for something..." : user.status
+        }
+    }
+//MARK: - Views
     let profileImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "headImage")
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = 75
@@ -28,7 +37,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Иван Иванов"
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
         return label
@@ -51,7 +60,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     let statusLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.text = "Waiting for something..."
         label.textColor = .gray
         return label
     }()
@@ -80,7 +88,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
         return textField
     }()
-    
+    //MARK: - Initialisers
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         let views = [nameLabel, statusButton, statusLabel, statusTextField, semitransparentView, profileImage]
@@ -95,6 +103,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(27)
             make.leading.equalTo(profileImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-16)
         }
         
         statusButton.snp.makeConstraints { make in
