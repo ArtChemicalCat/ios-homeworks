@@ -9,21 +9,12 @@ import UIKit
 import Combine
 import StorageService
 
+protocol LogInViewControllerDelegate {
+    func check(password: String, for login: String) -> Bool
+}
+
 class LogInViewController: UIViewController {
-    
-    private var subscriptions: Set<AnyCancellable> = []
-    private var keyboardSizePublisher: AnyPublisher<CGFloat, Never> {
-        
-        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
-            .map { ($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0 }
-        
-        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
-            .map { _ in CGFloat(0) }
-        
-        return Publishers.MergeMany(willHide, willShow)
-            .eraseToAnyPublisher()
-    }
-    
+    //MARK: - Views
     private let logoImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "logo"))
         
@@ -35,7 +26,7 @@ class LogInViewController: UIViewController {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 16))
         textField.leftView = padding
         textField.leftViewMode = .always
-        textField.placeholder = "Email or phone"
+        textField.placeholder = "Email or phone (artchemist@yandex.ru)"
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
@@ -53,7 +44,7 @@ class LogInViewController: UIViewController {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 16))
         textField.leftView = padding
         textField.leftViewMode = .always
-        textField.placeholder = "Password"
+        textField.placeholder = "Password (qwerty123)"
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
@@ -99,8 +90,23 @@ class LogInViewController: UIViewController {
         return view
     }()
     
+    //MARK: - Properties
+    private var subscriptions: Set<AnyCancellable> = []
+    private var keyboardSizePublisher: AnyPublisher<CGFloat, Never> {
+        
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
+            .map { ($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0 }
+        
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
+            .map { _ in CGFloat(0) }
+        
+        return Publishers.MergeMany(willHide, willShow)
+            .eraseToAnyPublisher()
+    }
     
-
+    var delegate: LogInViewControllerDelegate!
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
@@ -112,7 +118,7 @@ class LogInViewController: UIViewController {
             .store(in: &subscriptions)
     }
     
-    
+    //MARK: - Layout
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -154,6 +160,7 @@ class LogInViewController: UIViewController {
         ])
     }
     
+    //MARK: - Actions
     @objc
     private func loginAction() {
         var userService: UserService = CurrentUserService()
@@ -161,13 +168,11 @@ class LogInViewController: UIViewController {
         userService = TestUserService()
         #endif
         
-        guard let email = loginTextField.text, userService.getUser(with: email) != nil else {
-            var emailAdress = "artchemist@yandex.ru"
-            #if DEBUG
-            emailAdress = "123@mail.com"
-            #endif
-            
-            presentAlert(with: "Неверный email адрес, попробуйте: \(emailAdress)")
+        guard let email = loginTextField.text,
+              let password = passwordTextField.text,
+              delegate.check(password: password, for: email) else {
+    
+            presentAlert(with: "Неверный email и/или пароль")
             return
         }
         
@@ -185,6 +190,7 @@ class LogInViewController: UIViewController {
         
 }
 
+//MARK: - UITextFieldDelegate
 extension LogInViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
