@@ -143,6 +143,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		24029CCD2851185300FD9CE6 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				24A2A30D27D0123E0097DA17 /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		24029CCE2851185E00FD9CE6 /* PostInfo */ = {
+			isa = PBXGroup;
+			children = (
+				24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */,
+			);
+			path = PostInfo;
+			sourceTree = "<group>";
+		};
 		24197EFE27DB91BC00BCC61D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +280,8 @@
 			children = (
 				24F37EA72850EB1B0045DB80 /* Feed */,
 				24197EFE27DB91BC00BCC61D /* Profile */,
+				24029CCD2851185300FD9CE6 /* Post */,
+				24029CCE2851185E00FD9CE6 /* PostInfo */,
 				24A2A30627D0079D0097DA17 /* TabBarViewController.swift */,
 			);
 			path = Scenes;
@@ -273,19 +291,17 @@
 			isa = PBXGroup;
 			children = (
 				24029CCA2851091200FD9CE6 /* Model */,
-				24F37EA82850EB640045DB80 /* Controllers */,
+				24F37EA82850EB640045DB80 /* Controller */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		24F37EA82850EB640045DB80 /* Controllers */ = {
+		24F37EA82850EB640045DB80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				24A2A30D27D0123E0097DA17 /* PostViewController.swift */,
-				24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */,
 				24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		24F37EAB2850EF8B0045DB80 /* Cells */ = {

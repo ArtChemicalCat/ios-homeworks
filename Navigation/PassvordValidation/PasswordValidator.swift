@@ -11,7 +11,7 @@ public final class PasswordValidator {
     private let login = "artchemist@yandex.ru"
     private var password = "qwerty123"
     
-    public static let shared: PasswordValidator = .init()
+    public static let shared = PasswordValidator()
     
     private init() {}
     
