@@ -7,9 +7,10 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
-    
+    //MARK: - Views
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -20,15 +21,27 @@ class PhotosViewController: UIViewController {
         
         return view
     }()
+    
+    //MARK: - Properties
+    private let imagePublisherFacade: ImagePublisherFacade = .init()
+    private var photos: [UIImage] = .init()
 
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        Post.photos.shuffle()
-        navigationItem.title = "Photo Gallery"
         layout()
+        subscribeToImages()
+        loadImages()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        unsubscribeFromImages()
+    }
+    
+    //MARK: - Metods
     private func layout() {
+        navigationItem.title = "Photo Gallery"
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -38,8 +51,24 @@ class PhotosViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func subscribeToImages() {
+        imagePublisherFacade.subscribe(self)
+    }
+    
+    private func unsubscribeFromImages() {
+        print("unsubscribed")
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
+    }
+    
+    private func loadImages() {
+        let userPhotos = Post.photos.compactMap { $0 }
+        imagePublisherFacade.addImagesWithTimer(time: 0.1, repeat: 20, userImages: userPhotos)
+    }
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     private var edgeInset: CGFloat {
@@ -61,18 +90,24 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: - UICollectionViewDataSource
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Post.photos.count
+        photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.id, for: indexPath) as! PhotoCollectionViewCell
-        cell.image.image = Post.photos[indexPath.item]
+        cell.image.image = photos[indexPath.item]
         
         return cell
     }
-    
-    
 }
 
+//MARK: - ImageLibrarySubscriber
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        photos = images
+        collectionView.reloadData()
+    }
+}
