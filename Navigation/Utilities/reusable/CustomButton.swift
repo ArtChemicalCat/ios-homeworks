@@ -14,7 +14,7 @@ final class CustomButton: UIButton {
     private let buttonAction: Action
     
     //MARK: - Initialisers
-    init(with title: String, backgroundColor: UIColor = .systemGray, action: @escaping Action) {
+    init(with title: String, backgroundColor: UIColor = UIColor(named: "Color")!, action: @escaping Action) {
         buttonAction = action
         super.init(frame: .zero)
         layer.cornerRadius = 8
