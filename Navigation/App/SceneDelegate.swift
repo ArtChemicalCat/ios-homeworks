@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let loginFactory = MyLoginFactory()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,6 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = window
         window.makeKeyAndVisible()
+        
+        
+        if let loginNavigation = viewController.viewControllers?.last as? UINavigationController,
+           let loginViewController = loginNavigation.viewControllers.first as? LogInViewController {
+            loginViewController.delegate = loginFactory.makeLoginInspector()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
