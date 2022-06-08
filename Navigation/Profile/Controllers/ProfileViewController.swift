@@ -181,6 +181,7 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension ProfileViewController:  UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - 8 * 6) / 4

@@ -9,7 +9,7 @@ import UIKit
 import StorageService
 
 class PhotosTableViewCell: UITableViewCell {
-        
+    //MARK: - Views
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Photos"
@@ -37,6 +37,7 @@ class PhotosTableViewCell: UITableViewCell {
         return view
     }()
     
+    //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
@@ -47,6 +48,7 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Metods
     private func configureContent() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(arrowImage)
@@ -69,6 +71,7 @@ class PhotosTableViewCell: UITableViewCell {
     
 }
 
+//MARK: - UICollectionViewDataSource
 extension PhotosTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Post.photos.count
