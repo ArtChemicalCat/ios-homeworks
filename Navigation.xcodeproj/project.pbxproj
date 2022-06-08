@@ -36,6 +36,7 @@
 		24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA02850EA950045DB80 /* LoginFactory.swift */; };
 		24F37EA32850EAC70045DB80 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA22850EAC70045DB80 /* LoginInspector.swift */; };
 		24F37EA52850EAF30045DB80 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA42850EAF30045DB80 /* PasswordValidator.swift */; };
+		24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA92850EC980045DB80 /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		24F37EA02850EA950045DB80 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		24F37EA22850EAC70045DB80 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		24F37EA42850EAF30045DB80 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		24F37EA92850EC980045DB80 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4D86C95C2C356D5C01460DC0 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B686A010C69019BFBA08156C /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F035F5F1A2E7E847EA9E4797 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,9 +165,9 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
-				243A289A2837E1F7006430D3 /* Extensions */,
 				24C7E9AB284F416A00C99D06 /* PassvordValidation */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
@@ -185,11 +187,8 @@
 		243A288E2837CD20006430D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24F37EAB2850EF8B0045DB80 /* Cells */,
 				24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */,
-				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
-				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
-				243A28932837CE87006430D3 /* PhotoCollectionPreviewCell.swift */,
-				243A28952837CEC3006430D3 /* PhotosTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,12 +204,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		243A289A2837E1F7006430D3 /* Extensions */ = {
+		243A289A2837E1F7006430D3 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
 				243A28972837CEFE006430D3 /* UIView+Extension.swift */,
 			);
-			path = Extensions;
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		243A28EF2837EAEF006430D3 /* StorageService */ = {
@@ -276,6 +275,34 @@
 				24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		24F37EAB2850EF8B0045DB80 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
+				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
+				243A28932837CE87006430D3 /* PhotoCollectionPreviewCell.swift */,
+				243A28952837CEC3006430D3 /* PhotosTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		24F37EAC2850EFB40045DB80 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				24F37EAD2850EFC90045DB80 /* reusable */,
+				243A289A2837E1F7006430D3 /* extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		24F37EAD2850EFC90045DB80 /* reusable */ = {
+			isa = PBXGroup;
+			children = (
+				24F37EA92850EC980045DB80 /* CustomButton.swift */,
+			);
+			path = reusable;
 			sourceTree = "<group>";
 		};
 		5FF1D9A5CB7D3B9B4E9D176A /* Frameworks */ = {
@@ -473,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				243A28962837CEC4006430D3 /* PhotosTableViewCell.swift in Sources */,
+				24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */,
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
@@ -576,7 +604,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -631,7 +659,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

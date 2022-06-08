@@ -43,17 +43,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    lazy var statusButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
+    lazy var statusButton: CustomButton = {
+        let button = CustomButton(with: "Show status", backgroundColor: .systemBlue) { [unowned self] in
+            tapAction()
+        }
         button.layer.cornerRadius = 4
-        button.setTitle("Show status", for: .normal)
-        
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         return button
     }()
     
@@ -129,8 +127,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//MARK: - Acrions
-    @objc
+//MARK: - Actions
     private func tapAction() {
 
         guard let text = statusTextField.text, !text.isEmpty else { return }

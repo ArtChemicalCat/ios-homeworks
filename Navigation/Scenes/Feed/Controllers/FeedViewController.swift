@@ -12,23 +12,19 @@ class FeedViewController: UIViewController {
     
     let post = Post(author: "", description: "", image: "", likes: 0, views: 0)
     
-    lazy var firstButton: UIButton = {
-        let button = UIButton()
+    lazy var firstButton: CustomButton = {
+        let button = CustomButton(with: "Пост") { [unowned self] in
+            showPost()
+        }
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .bordered()
-        button.setTitle("Пост", for: .normal)
-        button.addTarget(self, action: #selector(showPost), for: .touchUpInside)
-        
         return button
     }()
     
-    lazy var secondButton: UIButton = {
-        let button = UIButton()
+    lazy var secondButton: CustomButton = {
+        let button = CustomButton(with: "Пост") { [unowned self] in
+            showPost()
+        }
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .bordered()
-        button.setTitle("Пост", for: .normal)
-        button.addTarget(self, action: #selector(showPost), for: .touchUpInside)
-        
         return button
     }()
     
@@ -53,14 +49,15 @@ class FeedViewController: UIViewController {
         view.addSubview(stackView)
         stackView.addArrangedSubview(firstButton)
         stackView.addArrangedSubview(secondButton)
-
+        
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.widthAnchor.constraint(equalToConstant: 150)
         ])
     }
     
-    @objc func showPost(sender: UIButton!) {
+    func showPost() {
         let vc = PostViewController()
         vc.navigationItem.title = "Пост"
         navigationController?.pushViewController(vc, animated: true)

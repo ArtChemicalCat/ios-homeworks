@@ -27,13 +27,13 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
-    lazy var closeButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.backgroundColor = .red
+    lazy var closeButton: CustomButton = {
+        let button = CustomButton(with: "", backgroundColor: .clear) { [unowned self] in
+            closeButtonAction()
+        }
+        let buttonImage = UIImage(systemName: "xmark")
+        button.setImage(buttonImage?.withTintColor(.red), for: .normal)
         button.alpha = 0
-        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
-        
         return button
     }()
     
