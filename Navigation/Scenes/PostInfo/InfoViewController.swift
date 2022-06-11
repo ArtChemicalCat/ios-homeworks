@@ -16,19 +16,15 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let alertButton: UIButton = {
-            let button = UIButton(frame: CGRect(x: screenWidth * 0.1, y: screenHeight / 2, width: screenWidth * 0.8, height: 30))
-            button.setTitle("Удалить пост", for: .normal)
-            button.configuration = .bordered()
-            button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-            
-            return button
-        }()
-        
+        let alertButton = CustomButton(with: "Удалить пост", action: { [unowned self] in
+            showAlert()
+        })
+        alertButton.frame = CGRect(origin: view.center, size: CGSize(width: 200, height: 50))
+        alertButton.center = view.center
         view.addSubview(alertButton)
     }
     
-    @objc func showAlert(sender: UIButton!) {
+    private func showAlert() {
         let alert: UIAlertController = {
             let alert = UIAlertController(title: "Удалить", message: "Вы точно хотите удалить пост?", preferredStyle: .alert)
             

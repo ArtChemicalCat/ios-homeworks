@@ -58,21 +58,20 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: UIButton = {
-        let button = UIButton()
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton(with: "Log In") { [unowned self] in
+            loginAction()
+        }
         let image = UIImage(named: "blue_pixel")!
         button.setBackgroundImage(image, for: .normal)
         button.clipsToBounds = true
-        button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         button.publisher(for: \.isHighlighted)
             .sink { state in
                 button.alpha = state ? 0.8 : 1
             }
             .store(in: &subscriptions)
-        
         return button
     }()
     

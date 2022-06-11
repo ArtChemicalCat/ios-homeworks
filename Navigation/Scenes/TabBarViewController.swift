@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
         
         let feedViewController: UINavigationController = {
             
-            let vc = UINavigationController(rootViewController: FeedViewController())
+            let vc = UINavigationController(rootViewController: FeedViewController(model: FeedModel()))
             vc.tabBarItem.image = UIImage(systemName: "house.circle")
             vc.title = "Лента"
             

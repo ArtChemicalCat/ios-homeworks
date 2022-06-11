@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13E8545A8ABC687A303094C4 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D86C95C2C356D5C01460DC0 /* Pods_Navigation.framework */; };
 		217AD29FF34F3830ACDB39C8 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B686A010C69019BFBA08156C /* Pods_StorageService.framework */; };
+		24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CCB2851092400FD9CE6 /* FeedModel.swift */; };
 		24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */; };
 		2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD027CBB2E300D998F6 /* AppDelegate.swift */; };
 		2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 		24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA02850EA950045DB80 /* LoginFactory.swift */; };
 		24F37EA32850EAC70045DB80 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA22850EAC70045DB80 /* LoginInspector.swift */; };
 		24F37EA52850EAF30045DB80 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA42850EAF30045DB80 /* PasswordValidator.swift */; };
+		24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA92850EC980045DB80 /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		065FB62E505E4E6432906AD0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		1B07E1CEFAB30B7CC19B0660 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		1DD87BDA9AEB4D6D1A8CBC22 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		24029CCB2851092400FD9CE6 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		2431EDCD27CBB2E300D998F6 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2431EDD027CBB2E300D998F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		24F37EA02850EA950045DB80 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		24F37EA22850EAC70045DB80 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		24F37EA42850EAF30045DB80 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		24F37EA92850EC980045DB80 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4D86C95C2C356D5C01460DC0 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B686A010C69019BFBA08156C /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F035F5F1A2E7E847EA9E4797 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +135,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		24029CCA2851091200FD9CE6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24029CCB2851092400FD9CE6 /* FeedModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24029CCD2851185300FD9CE6 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				24A2A30D27D0123E0097DA17 /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		24029CCE2851185E00FD9CE6 /* PostInfo */ = {
+			isa = PBXGroup;
+			children = (
+				24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */,
+			);
+			path = PostInfo;
+			sourceTree = "<group>";
+		};
 		24197EFE27DB91BC00BCC61D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,9 +191,9 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
-				243A289A2837E1F7006430D3 /* Extensions */,
 				24C7E9AB284F416A00C99D06 /* PassvordValidation */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
@@ -185,11 +213,8 @@
 		243A288E2837CD20006430D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24F37EAB2850EF8B0045DB80 /* Cells */,
 				24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */,
-				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
-				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
-				243A28932837CE87006430D3 /* PhotoCollectionPreviewCell.swift */,
-				243A28952837CEC3006430D3 /* PhotosTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,12 +230,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		243A289A2837E1F7006430D3 /* Extensions */ = {
+		243A289A2837E1F7006430D3 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
 				243A28972837CEFE006430D3 /* UIView+Extension.swift */,
 			);
-			path = Extensions;
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		243A28EF2837EAEF006430D3 /* StorageService */ = {
@@ -255,6 +280,8 @@
 			children = (
 				24F37EA72850EB1B0045DB80 /* Feed */,
 				24197EFE27DB91BC00BCC61D /* Profile */,
+				24029CCD2851185300FD9CE6 /* Post */,
+				24029CCE2851185E00FD9CE6 /* PostInfo */,
 				24A2A30627D0079D0097DA17 /* TabBarViewController.swift */,
 			);
 			path = Scenes;
@@ -263,19 +290,46 @@
 		24F37EA72850EB1B0045DB80 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				24F37EA82850EB640045DB80 /* Controllers */,
+				24029CCA2851091200FD9CE6 /* Model */,
+				24F37EA82850EB640045DB80 /* Controller */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		24F37EA82850EB640045DB80 /* Controllers */ = {
+		24F37EA82850EB640045DB80 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				24A2A30D27D0123E0097DA17 /* PostViewController.swift */,
-				24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */,
 				24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		24F37EAB2850EF8B0045DB80 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
+				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
+				243A28932837CE87006430D3 /* PhotoCollectionPreviewCell.swift */,
+				243A28952837CEC3006430D3 /* PhotosTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		24F37EAC2850EFB40045DB80 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				24F37EAD2850EFC90045DB80 /* reusable */,
+				243A289A2837E1F7006430D3 /* extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		24F37EAD2850EFC90045DB80 /* reusable */ = {
+			isa = PBXGroup;
+			children = (
+				24F37EA92850EC980045DB80 /* CustomButton.swift */,
+			);
+			path = reusable;
 			sourceTree = "<group>";
 		};
 		5FF1D9A5CB7D3B9B4E9D176A /* Frameworks */ = {
@@ -473,11 +527,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				243A28962837CEC4006430D3 /* PhotosTableViewCell.swift in Sources */,
+				24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */,
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
+				24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */,
 				24F37EA32850EAC70045DB80 /* LoginInspector.swift in Sources */,
 				24F37EA52850EAF30045DB80 /* PasswordValidator.swift in Sources */,
 				24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */,
@@ -576,7 +632,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -631,7 +687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
