@@ -10,6 +10,8 @@
 		13E8545A8ABC687A303094C4 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D86C95C2C356D5C01460DC0 /* Pods_Navigation.framework */; };
 		217AD29FF34F3830ACDB39C8 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B686A010C69019BFBA08156C /* Pods_StorageService.framework */; };
 		24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CCB2851092400FD9CE6 /* FeedModel.swift */; };
+		24029CF12855E6A100FD9CE6 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */; };
+		24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */; };
 		24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */; };
 		2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD027CBB2E300D998F6 /* AppDelegate.swift */; };
 		2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */; };
@@ -69,6 +71,8 @@
 		1B07E1CEFAB30B7CC19B0660 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		1DD87BDA9AEB4D6D1A8CBC22 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		24029CCB2851092400FD9CE6 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		2431EDCD27CBB2E300D998F6 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2431EDD027CBB2E300D998F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +163,31 @@
 			path = PostInfo;
 			sourceTree = "<group>";
 		};
+		24029CED2855E66E00FD9CE6 /* NavigationLogic */ = {
+			isa = PBXGroup;
+			children = (
+				24029CEF2855E68E00FD9CE6 /* Routers */,
+				24029CEE2855E68300FD9CE6 /* Coordinators */,
+			);
+			path = NavigationLogic;
+			sourceTree = "<group>";
+		};
+		24029CEE2855E68300FD9CE6 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		24029CEF2855E68E00FD9CE6 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 		24197EFE27DB91BC00BCC61D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +220,7 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				24029CED2855E66E00FD9CE6 /* NavigationLogic */,
 				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
@@ -532,6 +562,7 @@
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
+				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
 				24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */,
 				24F37EA32850EAC70045DB80 /* LoginInspector.swift in Sources */,
@@ -541,6 +572,7 @@
 				24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */,
 				24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */,
 				24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */,
+				24029CF12855E6A100FD9CE6 /* RouterProtocol.swift in Sources */,
 				2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */,
 				24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */,
 				243A28902837CE1D006430D3 /* PhotosViewController.swift in Sources */,
