@@ -8,16 +8,14 @@
 import UIKit
 
 final class FeedCoordinator: Coordinator {
+    //MARK: - Properties
+    var children: [Coordinator] = []
+    
     var router: Router
     
-    init() {
-        let model = FeedModel()
-        let feedVC = FeedViewController(model: model)
-        let navigationVC = UINavigationController(rootViewController: feedVC)
-        navigationVC.tabBarItem.image = UIImage(systemName: "house.circle")
-        navigationVC.title = "Лента"
-        self.router = NavigationRouter(navigationController: navigationVC)
-        feedVC.coordinator = self
+    //MARK: - Initialiser
+    init(router: Router) {
+        self.router = router
     }
     
     //MARK: - Metods

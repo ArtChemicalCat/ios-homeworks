@@ -9,19 +9,16 @@ import UIKit
 import StorageService
 
 final class ProfileCoordinator: Coordinator {
+    //MARK: - Properties
+    var children: [Coordinator] = []
+    
     var router: Router
     
     private let loginInspectorFactory = MyLoginFactory()
         
     //MARK: - Initialiser
-    init() {
-        let loginVC = LogInViewController()
-        loginVC.delegate = loginInspectorFactory.makeLoginInspector()
-        let navigationVC = UINavigationController(rootViewController: loginVC)
-        navigationVC.tabBarItem.image = UIImage(systemName: "person.circle")
-        navigationVC.title = "Профиль"
-        self.router = NavigationRouter(navigationController: navigationVC)
-        loginVC.coordinator = self
+    init(router: Router) {
+        self.router = router
     }
     
     //MARK: - Metods

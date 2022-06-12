@@ -8,6 +8,8 @@
 import Foundation
 
 public protocol Coordinator: AnyObject {
+    var children: [Coordinator] { get set }
+    
     var router: Router { get set }
     
     func present(animated: Bool)
