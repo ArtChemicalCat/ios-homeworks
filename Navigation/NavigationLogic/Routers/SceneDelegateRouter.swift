@@ -14,10 +14,10 @@ final class SceneDelegateRouter: Router {
         self.window = window
     }
     
-    func present(_ viewController: UIViewController, animated: Bool, onDismissed: (() -> Void)?) {
+    func present(_ viewController: UIViewController,
+                 animated: Bool,
+                 presentationStyle: PresentationStyle) {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }
-    
-    func dismiss(animated: Bool) { }
 }

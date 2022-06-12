@@ -7,17 +7,15 @@
 
 import UIKit
 
-public protocol Router: AnyObject {
+/// Вынес логику навигации в отдельный класс, наверное в рамках дз это лишнее,
+/// но в более крупном приложении поможет разделить ответственность между объектами.
+public protocol Router {
+    func present(_ viewController: UIViewController, animated: Bool, presentationStyle: PresentationStyle)
     func present(_ viewController: UIViewController, animated: Bool)
-    
-    func present(_ viewController: UIViewController, animated: Bool, onDismissed: (() -> Void)?)
-    
-    func dismiss(animated: Bool)
 }
 
 extension Router {
-    public func present(_ viewController: UIViewController, animated: Bool) {
-        present(viewController, animated: animated, onDismissed: nil)
+    func present(_ viewController: UIViewController, animated: Bool) {
+        present(viewController, animated: animated, presentationStyle: .navigation)
     }
 }
-

@@ -16,7 +16,7 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let alertButton = CustomButton(with: "Удалить пост", action: { [unowned self] in
+        let alertButton = CustomButton(withTitle: "Удалить пост", action: { [unowned self] in
             showAlert()
         })
         alertButton.frame = CGRect(origin: view.center, size: CGSize(width: 200, height: 50))

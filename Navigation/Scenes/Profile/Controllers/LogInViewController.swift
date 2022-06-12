@@ -59,7 +59,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(with: "Log In") { [unowned self] in
+        let button = CustomButton(withTitle: "Log In") { [unowned self] in
             loginAction()
         }
         let image = UIImage(named: "blue_pixel")!
@@ -104,6 +104,7 @@ class LogInViewController: UIViewController {
     }
     
     var delegate: LogInViewControllerDelegate!
+    weak var coordinator: ProfileCoordinator!
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -175,9 +176,7 @@ class LogInViewController: UIViewController {
             return
         }
         
-        let profileVC = ProfileViewController(email: email, userService: userService)
-        
-        navigationController?.pushViewController(profileVC, animated: true)
+        coordinator.showProfileVC(email: email, userService: userService)
     }
     
     private func presentAlert(with message: String) {

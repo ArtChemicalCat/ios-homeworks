@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+public protocol Coordinator: AnyObject {
+    var router: Router { get set }
+    
+    func present(animated: Bool)
+}
+

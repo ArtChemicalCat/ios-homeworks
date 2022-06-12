@@ -8,20 +8,16 @@
 import UIKit
 
 class PostViewController: UIViewController {
+    //MARK: - Properties
+    weak var coordinator: FeedCoordinator!
 
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.title = "Post"
         view.backgroundColor = .systemTeal
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(showInfo))
 
-    }
-    
-    @objc func showInfo(sender: UIBarButtonItem!) {
-        let vc = InfoViewController()
-        
-        vc.navigationItem.title = ""
-        present(vc, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,5 +28,10 @@ class PostViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    //MARK: - Actions
+    @objc func showInfo(sender: UIBarButtonItem!) {
+        coordinator.showInfoVC()
     }
 }
