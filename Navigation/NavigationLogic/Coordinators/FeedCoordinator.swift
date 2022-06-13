@@ -11,7 +11,7 @@ final class FeedCoordinator: Coordinator {
     //MARK: - Properties
     var children: [Coordinator] = []
     
-    var router: Router
+    let router: Router
     
     //MARK: - Initialiser
     init(router: Router) {

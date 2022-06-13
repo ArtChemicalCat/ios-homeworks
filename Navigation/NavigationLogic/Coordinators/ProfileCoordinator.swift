@@ -11,20 +11,20 @@ import StorageService
 final class ProfileCoordinator: Coordinator {
     //MARK: - Properties
     var children: [Coordinator] = []
+    let router: Router
     
-    var router: Router
-    
-    private let loginInspectorFactory = MyLoginFactory()
+    private let dependencyContainer: DependencyContainer
         
     //MARK: - Initialiser
-    init(router: Router) {
+    init(router: Router, dependencyContainer: DependencyContainer) {
         self.router = router
+        self.dependencyContainer = dependencyContainer
     }
     
     //MARK: - Metods
-    func showProfileVC(email: String, userService: UserService) {
-        let profileVC = ProfileViewController(email: email, userService: userService)
-        profileVC.coordinator = self
+    func showProfileVC(email: String) {
+        let profileVC = dependencyContainer.makeProfileViewController(email: email, coordinator: self)
+        
         router.present(profileVC, animated: true)
     }
     

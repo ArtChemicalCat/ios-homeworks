@@ -7,10 +7,35 @@
 
 import UIKit
 
+enum TabBarPage {
+    case feed
+    case profile
+    
+    var pageTitle: String {
+        switch self {
+        case .feed:
+            return "Лента"
+        case .profile:
+            return "Профиль"
+        }
+    }
+    
+    var image: UIImage? {
+        switch self {
+        case .feed:
+            return UIImage(systemName: "house.circle")
+        case .profile:
+            return UIImage(systemName: "person.circle")
+        }
+    }
+}
+
+
 final class MainCoordinator: Coordinator {
     var children: [Coordinator] = []
+    let router: Router
     
-    var router: Router
+    private let dependencyContainer = DependencyContainer()
     
     //MARK: - Initialiser
     init(router: Router) {
@@ -20,9 +45,9 @@ final class MainCoordinator: Coordinator {
     //MARK: - Coordinator
     func present(animated: Bool) {
         let tabBarVC = TabBarViewController()
-        let pages: [TabBarPage] = [.feed, .profile]
+        let pages: [TabBarPage] = [.profile, .feed]
         
-        tabBarVC.setViewControllers(pages.map { getTabController(page: $0) }, animated: true)
+        tabBarVC.setViewControllers(pages.map { getTabController(page: $0) }, animated: animated)
         
         router.present(tabBarVC, animated: animated)
     }
@@ -31,28 +56,26 @@ final class MainCoordinator: Coordinator {
     private func getTabController(page: TabBarPage) -> UINavigationController {
         let navigationVC = UINavigationController()
         navigationVC.tabBarItem.image = page.image
-        navigationVC.title = page.pageTitle
+        navigationVC.tabBarItem.title = page.pageTitle
 
         
         switch page {
         case .feed:
-            let feedVC = FeedViewController(model: FeedModel())
-            navigationVC.pushViewController(feedVC, animated: true)
             let navigationRouter = NavigationRouter(navigationController: navigationVC)
             let feedCoordinator = FeedCoordinator(router: navigationRouter)
+            let feedVC = dependencyContainer.makeFeedViewController(coordinator: feedCoordinator)
+            
+            navigationVC.pushViewController(feedVC, animated: true)
             children.append(feedCoordinator)
-            
-            feedVC.coordinator = feedCoordinator
-            
+                        
         case .profile:
-            let loginVC = LogInViewController()
-            loginVC.delegate = MyLoginFactory().makeLoginInspector()
-            navigationVC.pushViewController(loginVC, animated: true)
             let navigationRouter = NavigationRouter(navigationController: navigationVC)
-            let profileCoordinator = ProfileCoordinator(router: navigationRouter)
+            let profileCoordinator = ProfileCoordinator(router: navigationRouter,
+                                                        dependencyContainer: dependencyContainer)
+            let loginVC = dependencyContainer.makeLoginViewController(coordinator: profileCoordinator)
+
+            navigationVC.pushViewController(loginVC, animated: true)
             children.append(profileCoordinator)
-            
-            loginVC.coordinator = profileCoordinator
         }
         
         return navigationVC

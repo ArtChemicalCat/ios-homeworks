@@ -8,7 +8,7 @@
 import UIKit
 
 final class NavigationRouter: Router {
-    private(set) var navigationController = UINavigationController()
+    private let navigationController: UINavigationController
     
     //MARK: - Initialiser
     init(navigationController: UINavigationController) {

@@ -13,7 +13,7 @@ protocol LoginFactory {
     func makeLoginInspector() -> LoginInspector
 }
 
-final class MyLoginFactory: LoginFactory {
+extension DependencyContainer: LoginFactory {
     func makeLoginInspector() -> LoginInspector {
         LoginInspector()
     }
