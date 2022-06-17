@@ -8,30 +8,10 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-                
-        let logInViewController: UINavigationController = {
-            let vc = UINavigationController(rootViewController: LogInViewController())
-            vc.tabBarItem.image = UIImage(systemName: "person.circle")
-            vc.title = "Профиль"
-            
-            return vc
-        }()
-        
-        let feedViewController: UINavigationController = {
-            
-            let vc = UINavigationController(rootViewController: FeedViewController(model: FeedModel()))
-            vc.tabBarItem.image = UIImage(systemName: "house.circle")
-            vc.title = "Лента"
-            
-            return vc
-        }()
-        
-        setViewControllers([feedViewController, logInViewController], animated: true)
-        tabBar.isTranslucent = false
     }
-
 }

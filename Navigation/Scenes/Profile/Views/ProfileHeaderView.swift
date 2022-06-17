@@ -44,7 +44,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     lazy var statusButton: CustomButton = {
-        let button = CustomButton(with: "Show status", backgroundColor: .systemBlue) { [unowned self] in
+        let button = CustomButton(withTitle: "Show status", backgroundColor: .systemBlue) { [unowned self] in
             tapAction()
         }
         button.layer.cornerRadius = 4

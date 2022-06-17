@@ -12,6 +12,11 @@
 		24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CCB2851092400FD9CE6 /* FeedModel.swift */; };
 		24029CF12855E6A100FD9CE6 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */; };
 		24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */; };
+		24029CF72855E76800FD9CE6 /* SceneDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF62855E76800FD9CE6 /* SceneDelegateRouter.swift */; };
+		24029CF92855E98700FD9CE6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CF82855E98700FD9CE6 /* ProfileCoordinator.swift */; };
+		24029CFB2855EB4800FD9CE6 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CFA2855EB4800FD9CE6 /* NavigationRouter.swift */; };
+		24029CFD2855F02C00FD9CE6 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CFC2855F02C00FD9CE6 /* FeedCoordinator.swift */; };
+		24029D01285608E100FD9CE6 /* PresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029D00285608E100FD9CE6 /* PresentationStyle.swift */; };
 		24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */; };
 		2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD027CBB2E300D998F6 /* AppDelegate.swift */; };
 		2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */; };
@@ -32,6 +37,9 @@
 		24A2A30C27D00D5B0097DA17 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */; };
 		24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30D27D0123E0097DA17 /* PostViewController.swift */; };
 		24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */; };
+		24A2E12E28564B970058F6E6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E12D28564B970058F6E6 /* MainCoordinator.swift */; };
+		24A2E132285661E10058F6E6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E131285661E10058F6E6 /* LoginViewModel.swift */; };
+		24A2E137285666E60058F6E6 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E136285666E60058F6E6 /* DependencyContainer.swift */; };
 		24C7E9A1284BDC9500C99D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A0284BDC9500C99D06 /* User.swift */; };
 		24C7E9A3284BDCA800C99D06 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A2284BDCA800C99D06 /* UserService.swift */; };
 		24D526DF284F784D00D98B9A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 24D526DE284F784D00D98B9A /* iOSIntPackage */; };
@@ -73,6 +81,11 @@
 		24029CCB2851092400FD9CE6 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 		24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		24029CF62855E76800FD9CE6 /* SceneDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateRouter.swift; sourceTree = "<group>"; };
+		24029CF82855E98700FD9CE6 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		24029CFA2855EB4800FD9CE6 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		24029CFC2855F02C00FD9CE6 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		24029D00285608E100FD9CE6 /* PresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationStyle.swift; sourceTree = "<group>"; };
 		24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		2431EDCD27CBB2E300D998F6 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2431EDD027CBB2E300D998F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +107,9 @@
 		24A2A30B27D00D5B0097DA17 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		24A2A30D27D0123E0097DA17 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		24A2A31127D0D9CC0097DA17 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		24A2E12D28564B970058F6E6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		24A2E131285661E10058F6E6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		24A2E136285666E60058F6E6 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		24C7E9A0284BDC9500C99D06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24C7E9A2284BDCA800C99D06 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +184,7 @@
 			children = (
 				24029CEF2855E68E00FD9CE6 /* Routers */,
 				24029CEE2855E68300FD9CE6 /* Coordinators */,
+				24029D00285608E100FD9CE6 /* PresentationStyle.swift */,
 			);
 			path = NavigationLogic;
 			sourceTree = "<group>";
@@ -176,6 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				24029CF22855E6B400FD9CE6 /* CoordinatorProtocol.swift */,
+				24A2E12D28564B970058F6E6 /* MainCoordinator.swift */,
+				24029CF82855E98700FD9CE6 /* ProfileCoordinator.swift */,
+				24029CFC2855F02C00FD9CE6 /* FeedCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -184,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				24029CF02855E6A100FD9CE6 /* RouterProtocol.swift */,
+				24029CF62855E76800FD9CE6 /* SceneDelegateRouter.swift */,
+				24029CFA2855EB4800FD9CE6 /* NavigationRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -234,8 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				24A2A30827D00D050097DA17 /* ProfileViewController.swift */,
-				24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */,
-				243A288F2837CE1D006430D3 /* PhotosViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +276,7 @@
 				2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */,
 				2431EDD027CBB2E300D998F6 /* AppDelegate.swift */,
 				2431EDDB27CBB2E400D998F6 /* LaunchScreen.storyboard */,
+				24A2E136285666E60058F6E6 /* DependencyContainer.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -276,6 +297,24 @@
 				243A28FA2837EB66006430D3 /* StorageService.h */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		24A2E12F285661960058F6E6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */,
+				24A2E131285661E10058F6E6 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		24A2E130285661A50058F6E6 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
+				243A288F2837CE1D006430D3 /* PhotosViewController.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 		24C7E99E284BDC7D00C99D06 /* UserService */ = {
@@ -308,6 +347,8 @@
 		24F37EA62850EB0C0045DB80 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				24A2E130285661A50058F6E6 /* Photos */,
+				24A2E12F285661960058F6E6 /* Login */,
 				24F37EA72850EB1B0045DB80 /* Feed */,
 				24197EFE27DB91BC00BCC61D /* Profile */,
 				24029CCD2851185300FD9CE6 /* Post */,
@@ -338,7 +379,6 @@
 			isa = PBXGroup;
 			children = (
 				2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */,
-				243A28912837CE52006430D3 /* PhotoCollectionViewCell.swift */,
 				243A28932837CE87006430D3 /* PhotoCollectionPreviewCell.swift */,
 				243A28952837CEC3006430D3 /* PhotosTableViewCell.swift */,
 			);
@@ -557,26 +597,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				243A28962837CEC4006430D3 /* PhotosTableViewCell.swift in Sources */,
+				24A2E12E28564B970058F6E6 /* MainCoordinator.swift in Sources */,
 				24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */,
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
+				24029CF92855E98700FD9CE6 /* ProfileCoordinator.swift in Sources */,
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
 				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
+				24029CFB2855EB4800FD9CE6 /* NavigationRouter.swift in Sources */,
 				24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */,
 				24F37EA32850EAC70045DB80 /* LoginInspector.swift in Sources */,
 				24F37EA52850EAF30045DB80 /* PasswordValidator.swift in Sources */,
 				24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */,
 				24A2A30C27D00D5B0097DA17 /* FeedViewController.swift in Sources */,
+				24A2E137285666E60058F6E6 /* DependencyContainer.swift in Sources */,
+				24029CF72855E76800FD9CE6 /* SceneDelegateRouter.swift in Sources */,
 				24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */,
 				24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */,
+				24029D01285608E100FD9CE6 /* PresentationStyle.swift in Sources */,
 				24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */,
+				24A2E132285661E10058F6E6 /* LoginViewModel.swift in Sources */,
 				24029CF12855E6A100FD9CE6 /* RouterProtocol.swift in Sources */,
 				2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */,
 				24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */,
 				243A28902837CE1D006430D3 /* PhotosViewController.swift in Sources */,
 				24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */,
+				24029CFD2855F02C00FD9CE6 /* FeedCoordinator.swift in Sources */,
 				2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginInspector: LogInViewControllerDelegate {
-    func check(password: String, for login: String) -> Bool {
+    func check(password: String, forLogin login: String) -> Bool {
         PasswordValidator.shared.isPasswordValid(password, for: login)
     }
 }

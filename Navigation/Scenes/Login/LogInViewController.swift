@@ -10,7 +10,7 @@ import Combine
 import StorageService
 
 protocol LogInViewControllerDelegate {
-    func check(password: String, for login: String) -> Bool
+    func check(password: String, forLogin login: String) -> Bool
 }
 
 class LogInViewController: UIViewController {
@@ -59,9 +59,10 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(with: "Log In") { [unowned self] in
-            loginAction()
+        let button = CustomButton(withTitle: "Log In") { [unowned self] in
+            logIn()
         }
+        
         let image = UIImage(named: "blue_pixel")!
         button.setBackgroundImage(image, for: .normal)
         button.clipsToBounds = true
@@ -103,12 +104,22 @@ class LogInViewController: UIViewController {
             .eraseToAnyPublisher()
     }
     
-    var delegate: LogInViewControllerDelegate!
+    private let viewModel: LoginViewModel
     
     //MARK: - LifeCycle
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        bind(to: viewModel)
         keyboardSizePublisher
             .sink { [unowned self] height in
                 self.scrollView.contentInset.bottom = height
@@ -117,7 +128,7 @@ class LogInViewController: UIViewController {
             .store(in: &subscriptions)
     }
     
-    //MARK: - Layout
+    //MARK: - Metods
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -159,25 +170,16 @@ class LogInViewController: UIViewController {
         ])
     }
     
-    //MARK: - Actions
-    @objc
-    private func loginAction() {
-        var userService: UserService = CurrentUserService()
-        #if DEBUG
-        userService = TestUserService()
-        #endif
-        
-        guard let email = loginTextField.text,
-              let password = passwordTextField.text,
-              delegate.check(password: password, for: email) else {
-    
-            presentAlert(with: "Неверный email и/или пароль")
-            return
-        }
-        
-        let profileVC = ProfileViewController(email: email, userService: userService)
-        
-        navigationController?.pushViewController(profileVC, animated: true)
+    private func bind(to viewModel: LoginViewModel) {
+        viewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { [weak self] message in
+                guard let message = message else { return }
+                
+                self?.presentAlert(with: message)
+            }
+            .store(in: &subscriptions)
     }
     
     private func presentAlert(with message: String) {
@@ -186,7 +188,15 @@ class LogInViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true)
     }
+    
+    //MARK: - Actions
+    private func logIn() {
+        guard let email = loginTextField.text,
+              let password = passwordTextField.text,
+              !email.isEmpty && !password.isEmpty else { return }
         
+        viewModel.login(email: email, password: password)
+    }
 }
 
 //MARK: - UITextFieldDelegate

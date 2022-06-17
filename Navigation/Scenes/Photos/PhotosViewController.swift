@@ -23,8 +23,8 @@ class PhotosViewController: UIViewController {
     }()
     
     //MARK: - Properties
-    private let imagePublisherFacade: ImagePublisherFacade = .init()
-    private var photos: [UIImage] = .init()
+    private let imagePublisherFacade = ImagePublisherFacade()
+    private var photos = [UIImage]()
 
     //MARK: - LifeCycle
     override func viewDidLoad() {

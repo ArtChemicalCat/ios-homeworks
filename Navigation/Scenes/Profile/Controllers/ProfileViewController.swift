@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
     }()
     
     lazy var closeButton: CustomButton = {
-        let button = CustomButton(with: "", backgroundColor: .clear) { [unowned self] in
+        let button = CustomButton(withTitle: "", backgroundColor: .clear) { [unowned self] in
             closeButtonAction()
         }
         let buttonImage = UIImage(systemName: "xmark")
@@ -42,6 +42,8 @@ class ProfileViewController: UIViewController {
     private lazy var originalAvatarPosition: CGPoint = .zero
     private let userService: UserService
     private let email: String
+    
+    weak var coordinator: ProfileCoordinator!
     
     //MARK: - Initialisers
     init(email: String, userService: UserService) {
@@ -131,7 +133,7 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
-            navigationController?.pushViewController(PhotosViewController(), animated: true)
+            coordinator.showPhotosVC()
         }
     }
     
@@ -198,7 +200,7 @@ extension ProfileViewController:  UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(PhotosViewController(), animated: true)
+        coordinator.showPhotosVC()
     }
     
 }

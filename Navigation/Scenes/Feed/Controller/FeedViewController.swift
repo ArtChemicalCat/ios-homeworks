@@ -12,25 +12,16 @@ import Combine
 
 class FeedViewController: UIViewController {
     //MARK: - Views
-    private lazy var firstButton: CustomButton = {
-        let button = CustomButton(with: "Пост №1") { [unowned self] in
-            showPost()
+    private lazy var firstButton = CustomButton(withTitle: "Пост №1") { [unowned self] in
+            coordinator.showPostVC()
         }
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
-    private lazy var secondButton: CustomButton = {
-        let button = CustomButton(with: "Пост №2") { [unowned self] in
-            showPost()
+    private lazy var secondButton = CustomButton(withTitle: "Пост №2") { [unowned self] in
+            coordinator.showPostVC()
         }
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.distribution = .fillEqually
@@ -50,14 +41,10 @@ class FeedViewController: UIViewController {
         return textField
     }()
     
-    private lazy var checkAnswerButton: CustomButton = {
-        let view = CustomButton(with: "Check") { [unowned self] in
+    private lazy var checkAnswerButton = CustomButton(withTitle: "Check") { [unowned self] in
             guard let answer = answerTextField.text, !answer.isEmpty else { return }
             model.check(word: answer)
         }
-        
-        return view
-    }()
     
     private let answerLabel: UILabel = {
         let label = UILabel()
@@ -73,6 +60,8 @@ class FeedViewController: UIViewController {
     //MARK: - Properties
     private let model: FeedModel
     private var subscriptions = Array<AnyCancellable>()
+    
+    weak var coordinator: FeedCoordinator!
     
     //MARK: - Initializers
     init(model: FeedModel) {
@@ -151,12 +140,6 @@ class FeedViewController: UIViewController {
     }
     
     //MARK: - Action
-    private func showPost() {
-        let vc = PostViewController()
-        vc.navigationItem.title = "Пост"
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     private func showAnswer() {
         UIView.animate(withDuration: 0.6,
                        delay: 0,
