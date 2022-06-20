@@ -46,15 +46,7 @@ class PhotosTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         configureContent()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    //MARK: - LifeCycle
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
+        
         let startDate = Date()
         ImageProcessor().processImagesOnThread(sourceImages: photos,
                                                filter: .posterize,
@@ -68,6 +60,10 @@ class PhotosTableViewCell: UITableViewCell {
             }
             print("Изображения были обработаны в течении \(Date().timeIntervalSince(startDate)) секунд")
         }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - Metods
