@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PhotosTableViewCell: UITableViewCell {
     //MARK: - Views
@@ -36,12 +37,29 @@ class PhotosTableViewCell: UITableViewCell {
         
         return view
     }()
+    //MARK: - Properties
+    private var photos: [UIImage]
     
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        photos = Post.photos.compactMap { $0 }
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         configureContent()
+        
+        let startDate = Date()
+        ImageProcessor().processImagesOnThread(sourceImages: photos,
+                                               filter: .posterize,
+                                               qos: .default) { [weak self] images in
+            guard let self = self else { return }
+            self.photos = images
+                .compactMap { $0 }
+                .map { UIImage(cgImage: $0) }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            print("Изображения были обработаны в течении \(Date().timeIntervalSince(startDate)) секунд")
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -68,18 +86,17 @@ class PhotosTableViewCell: UITableViewCell {
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
 }
 
 //MARK: - UICollectionViewDataSource
 extension PhotosTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Post.photos.count
+        photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionPreviewCell.id, for: indexPath) as! PhotoCollectionPreviewCell
-        cell.image.image = Post.photos[indexPath.item]
+        cell.image.image = photos[indexPath.item]
         
         return cell
     }
