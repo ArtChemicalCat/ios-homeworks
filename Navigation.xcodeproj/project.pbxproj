@@ -40,6 +40,7 @@
 		24A2E12E28564B970058F6E6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E12D28564B970058F6E6 /* MainCoordinator.swift */; };
 		24A2E132285661E10058F6E6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E131285661E10058F6E6 /* LoginViewModel.swift */; };
 		24A2E137285666E60058F6E6 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2E136285666E60058F6E6 /* DependencyContainer.swift */; };
+		24A6F6A1286469470053A84B /* PasswordHacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6F6A0286469470053A84B /* PasswordHacker.swift */; };
 		24C7E9A1284BDC9500C99D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A0284BDC9500C99D06 /* User.swift */; };
 		24C7E9A3284BDCA800C99D06 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A2284BDCA800C99D06 /* UserService.swift */; };
 		24D526DF284F784D00D98B9A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 24D526DE284F784D00D98B9A /* iOSIntPackage */; };
@@ -110,6 +111,7 @@
 		24A2E12D28564B970058F6E6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		24A2E131285661E10058F6E6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		24A2E136285666E60058F6E6 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		24A6F6A0286469470053A84B /* PasswordHacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordHacker.swift; sourceTree = "<group>"; };
 		24C7E9A0284BDC9500C99D06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24C7E9A2284BDCA800C99D06 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -242,11 +244,11 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				24A6F69E286465100053A84B /* Secvices */,
 				24029CED2855E66E00FD9CE6 /* NavigationLogic */,
 				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
-				24C7E9AB284F416A00C99D06 /* PassvordValidation */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
 			path = Navigation;
@@ -315,6 +317,23 @@
 				243A288F2837CE1D006430D3 /* PhotosViewController.swift */,
 			);
 			path = Photos;
+			sourceTree = "<group>";
+		};
+		24A6F69E286465100053A84B /* Secvices */ = {
+			isa = PBXGroup;
+			children = (
+				24A6F69F2864651E0053A84B /* PassvordHacker */,
+				24C7E9AB284F416A00C99D06 /* PassvordValidation */,
+			);
+			path = Secvices;
+			sourceTree = "<group>";
+		};
+		24A6F69F2864651E0053A84B /* PassvordHacker */ = {
+			isa = PBXGroup;
+			children = (
+				24A6F6A0286469470053A84B /* PasswordHacker.swift */,
+			);
+			path = PassvordHacker;
 			sourceTree = "<group>";
 		};
 		24C7E99E284BDC7D00C99D06 /* UserService */ = {
@@ -615,6 +634,7 @@
 				24A2E137285666E60058F6E6 /* DependencyContainer.swift in Sources */,
 				24029CF72855E76800FD9CE6 /* SceneDelegateRouter.swift in Sources */,
 				24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */,
+				24A6F6A1286469470053A84B /* PasswordHacker.swift in Sources */,
 				24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */,
 				24029D01285608E100FD9CE6 /* PresentationStyle.swift in Sources */,
 				24A2A31227D0D9CC0097DA17 /* InfoViewController.swift in Sources */,
@@ -712,7 +732,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -767,7 +787,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

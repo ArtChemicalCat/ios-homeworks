@@ -32,9 +32,4 @@ final class CustomButton: UIButton {
     @objc private func buttonTapped() {
         buttonAction()
     }
-    
-    //MARK: - Metods
-    public func padding(_ insets: UIEdgeInsets) {
-        contentEdgeInsets = insets
-    }
 }

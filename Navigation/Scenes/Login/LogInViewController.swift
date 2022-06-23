@@ -90,6 +90,15 @@ class LogInViewController: UIViewController {
         return view
     }()
     
+    private lazy var generatePasswordButton: CustomButton = {
+        let button = CustomButton(withTitle: "Подобрать пароль") { [weak viewModel] in
+            guard let viewModel = viewModel else { return }
+            viewModel.hackPassword()
+        }
+        button.configuration = .filled()
+        return button
+    }()
+    
     //MARK: - Properties
     private var subscriptions: Set<AnyCancellable> = []
     private var keyboardSizePublisher: AnyPublisher<CGFloat, Never> {
@@ -132,7 +141,7 @@ class LogInViewController: UIViewController {
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [logoImage, loginTextField, passwordTextField, loginButton].forEach { contentView.addSubview($0) }
+        [logoImage, loginTextField, passwordTextField, loginButton, generatePasswordButton].forEach { contentView.addSubview($0) }
         contentView.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
         NSLayoutConstraint.activate([
@@ -166,7 +175,11 @@ class LogInViewController: UIViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
+            generatePasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            generatePasswordButton.leftAnchor.constraint(equalTo: loginButton.leftAnchor),
+            generatePasswordButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+            generatePasswordButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
@@ -178,6 +191,29 @@ class LogInViewController: UIViewController {
                 guard let message = message else { return }
                 
                 self?.presentAlert(with: message)
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.$isGeneratingPassword
+            .receive(on: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { [weak self] isGenerating in
+                guard let self = self else { return }
+                self.generatePasswordButton.configuration?.showsActivityIndicator = isGenerating
+                self.loginTextField.isEnabled = !isGenerating
+                self.passwordTextField.isEnabled = !isGenerating
+                self.loginButton.isEnabled = !isGenerating
+                self.generatePasswordButton.isEnabled = !isGenerating
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.$unlockedPassword
+            .sink { [weak self] password in
+                guard let self = self, let password = password else { return }
+                
+                self.passwordTextField.text = password
+                self.loginTextField.text = "artchemist@yandex.ru"
+                self.passwordTextField.isSecureTextEntry = false
             }
             .store(in: &subscriptions)
     }

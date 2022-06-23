@@ -18,5 +18,9 @@ public final class PasswordValidator {
     public func isPasswordValid(_ password: String, for login: String) -> Bool {
         return self.login == login.lowercased() && self.password.hash == password.hash
     }
+    
+    public func setNewPassword(_ password: String) {
+        self.password = password
+    }
 }
 
