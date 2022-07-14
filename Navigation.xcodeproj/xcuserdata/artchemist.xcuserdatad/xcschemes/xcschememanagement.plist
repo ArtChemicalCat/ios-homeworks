@@ -4,10 +4,42 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Navigation.xcscheme_^#shared#^_</key>
+		<key>Navigation(debug).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Navigation(release).xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>Navigation.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>StorageService.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2431EDCC27CBB2E300D998F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>243A28ED2837EAEF006430D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
