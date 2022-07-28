@@ -33,6 +33,7 @@
 		243A28FB2837EB66006430D3 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 243A28FA2837EB66006430D3 /* StorageService.h */; };
 		243A28FC2837EB7E006430D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8327E871A4000CBFBD /* Post.swift */; };
 		2466098E288C525E00406F22 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466098D288C525E00406F22 /* ToDoItem.swift */; };
+		246609B8289287CF00406F22 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B7289287CF00406F22 /* Planet.swift */; };
 		2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */; };
 		24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30627D0079D0097DA17 /* TabBarViewController.swift */; };
 		24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30827D00D050097DA17 /* ProfileViewController.swift */; };
@@ -105,6 +106,7 @@
 		243A28EE2837EAEF006430D3 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		243A28FA2837EB66006430D3 /* StorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		2466098D288C525E00406F22 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		246609B7289287CF00406F22 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		2480ED8327E871A4000CBFBD /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		24A2A30627D0079D0097DA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				2466098D288C525E00406F22 /* ToDoItem.swift */,
+				246609B7289287CF00406F22 /* Planet.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
 				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
+				246609B8289287CF00406F22 /* Planet.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
 				24029CFB2855EB4800FD9CE6 /* NavigationRouter.swift in Sources */,
 				24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */,
