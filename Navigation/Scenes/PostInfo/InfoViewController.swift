@@ -21,15 +21,36 @@ class InfoViewController: UIViewController {
         return label
     }()
     
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
+    private lazy var residentsTableView: UITableView = {
+        let view = UITableView()
+        view.delegate = self
+        view.dataSource = self
+        return view
+    }()
+    
+    private let screenWidth = UIScreen.main.bounds.width
+    private let screenHeight = UIScreen.main.bounds.height
+    private var residents = Array<Personage>() {
+        didSet {
+            DispatchQueue.main.async {
+                self.residentsTableView.reloadData()
+            }
+        }
+    }
+    
+    private lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        return decoder
+    }()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         layout()
-//        setupAlertButton()
+        //        setupAlertButton()
         getTitle()
         getPlanetInfo()
     }
@@ -78,8 +99,8 @@ class InfoViewController: UIViewController {
             }
             
             guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200,
-            let data = data else {
+                  response.statusCode == 200,
+                  let data = data else {
                 return
             }
             
@@ -112,17 +133,17 @@ class InfoViewController: UIViewController {
             }
             
             guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200,
-            let data = data else {
+                  let self = self,
+                  response.statusCode == 200,
+                  let data = data else {
                 return
             }
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase // CodingKeys не пригодились)
             do {
-                let tatooine = try decoder.decode(Planet.self, from: data)
+                let tatooine = try self.decoder.decode(Planet.self, from: data)
                 DispatchQueue.main.async {
-                    self?.setOrbitalPeriod(for: tatooine)
+                    self.setOrbitalPeriod(for: tatooine)
                 }
+                tatooine.residents.compactMap { $0 }.forEach { self.loadResident(url: $0) }
             } catch {
                 print(error)
             }
@@ -138,9 +159,30 @@ class InfoViewController: UIViewController {
         tatooineLabel.text = "Период вращения татуина вокруг своей оси составляет \(planet.orbitalPeriod)"
     }
     
+    private func loadResident(url: URL) {
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+                  response.statusCode == 200,
+                  let self = self,
+                  let data = data else { return }
+            do {
+                let personage = try self.decoder.decode(Personage.self, from: data)
+                self.residents.append(personage)
+            } catch {
+                print(error)
+            }
+            
+        }.resume()
+    }
+    
     private func layout() {
-        view.addSubview(titleLabel)
-        view.addSubview(tatooineLabel)
+        [titleLabel, tatooineLabel, residentsTableView].forEach { view.addSubview($0) }
+
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view).offset(16)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).offset(16)
@@ -150,5 +192,30 @@ class InfoViewController: UIViewController {
             make.leading.trailing.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
         }
+        
+        residentsTableView.snp.makeConstraints { make in
+            make.top.equalTo(tatooineLabel.snp.bottom).offset(12)
+            make.trailing.leading.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
+}
+
+extension InfoViewController: UITableViewDelegate {
+    
+}
+
+extension InfoViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        residents.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        var configuration = UIListContentConfiguration.cell()
+        configuration.text = residents[indexPath.item].name
+        cell.contentConfiguration = configuration
+        return cell
+    }
+    
+    
 }

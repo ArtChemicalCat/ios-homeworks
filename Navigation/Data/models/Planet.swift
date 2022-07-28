@@ -14,4 +14,5 @@ struct Planet: Codable {
     let diameter: String
     let climate: String
     let gravity: String
+    let residents: [URL?]
 }
