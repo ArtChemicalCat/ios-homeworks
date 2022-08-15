@@ -32,6 +32,7 @@
 		243A28F52837EAEF006430D3 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 243A28EE2837EAEF006430D3 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		243A28FB2837EB66006430D3 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 243A28FA2837EB66006430D3 /* StorageService.h */; };
 		243A28FC2837EB7E006430D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8327E871A4000CBFBD /* Post.swift */; };
+		2457ECE928AA297300D0BBC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */; };
 		2466098E288C525E00406F22 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466098D288C525E00406F22 /* ToDoItem.swift */; };
 		246609B8289287CF00406F22 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B7289287CF00406F22 /* Planet.swift */; };
 		246609BA28928E7400406F22 /* Personage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B928928E7400406F22 /* Personage.swift */; };
@@ -106,6 +107,7 @@
 		243A28972837CEFE006430D3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		243A28EE2837EAEF006430D3 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		243A28FA2837EB66006430D3 /* StorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2466098D288C525E00406F22 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		246609B7289287CF00406F22 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		246609B928928E7400406F22 /* Personage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personage.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
+				2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
 			path = Navigation;
@@ -570,6 +573,7 @@
 			files = (
 				2431EDDD27CBB2E400D998F6 /* LaunchScreen.storyboard in Resources */,
 				2431EDDA27CBB2E400D998F6 /* Assets.xcassets in Resources */,
+				2457ECE928AA297300D0BBC2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
