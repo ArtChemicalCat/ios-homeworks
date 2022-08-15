@@ -30,14 +30,9 @@ class InfoViewController: UIViewController {
     
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height
-    private var residents = Array<Personage>() {
-        didSet {
-            DispatchQueue.main.async {
-                self.residentsTableView.reloadData()
-            }
-        }
-    }
+    private var residents = Array<Personage>()
     
+    private let group = DispatchGroup()
     private lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -144,6 +139,9 @@ class InfoViewController: UIViewController {
                     self.setOrbitalPeriod(for: tatooine)
                 }
                 tatooine.residents.compactMap { $0 }.forEach { self.loadResident(url: $0) }
+                self.group.notify(queue: .main) {
+                    self.residentsTableView.reloadData()
+                }
             } catch {
                 print(error)
             }
@@ -160,7 +158,11 @@ class InfoViewController: UIViewController {
     }
     
     private func loadResident(url: URL) {
+        group.enter()
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            defer {
+                self?.group.leave()
+            }
             if let error = error {
                 print(error)
                 return
