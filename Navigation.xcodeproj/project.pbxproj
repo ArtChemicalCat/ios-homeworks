@@ -32,6 +32,9 @@
 		243A28F52837EAEF006430D3 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 243A28EE2837EAEF006430D3 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		243A28FB2837EB66006430D3 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 243A28FA2837EB66006430D3 /* StorageService.h */; };
 		243A28FC2837EB7E006430D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8327E871A4000CBFBD /* Post.swift */; };
+		2466098E288C525E00406F22 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466098D288C525E00406F22 /* ToDoItem.swift */; };
+		246609B8289287CF00406F22 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B7289287CF00406F22 /* Planet.swift */; };
+		246609BA28928E7400406F22 /* Personage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B928928E7400406F22 /* Personage.swift */; };
 		2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */; };
 		24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30627D0079D0097DA17 /* TabBarViewController.swift */; };
 		24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30827D00D050097DA17 /* ProfileViewController.swift */; };
@@ -103,6 +106,9 @@
 		243A28972837CEFE006430D3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		243A28EE2837EAEF006430D3 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		243A28FA2837EB66006430D3 /* StorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		2466098D288C525E00406F22 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		246609B7289287CF00406F22 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		246609B928928E7400406F22 /* Personage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personage.swift; sourceTree = "<group>"; };
 		2480ED8327E871A4000CBFBD /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		24A2A30627D0079D0097DA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +252,7 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				2466098B288C522B00406F22 /* Data */,
 				24A6F69E286465100053A84B /* Secvices */,
 				24029CED2855E66E00FD9CE6 /* NavigationLogic */,
 				24F37EAC2850EFB40045DB80 /* Utilities */,
@@ -309,6 +316,24 @@
 				243A28FA2837EB66006430D3 /* StorageService.h */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		2466098B288C522B00406F22 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2466098C288C523F00406F22 /* models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2466098C288C523F00406F22 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2466098D288C525E00406F22 /* ToDoItem.swift */,
+				246609B7289287CF00406F22 /* Planet.swift */,
+				246609B928928E7400406F22 /* Personage.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		24A2E12F285661960058F6E6 /* Login */ = {
@@ -628,6 +653,7 @@
 			files = (
 				243A28962837CEC4006430D3 /* PhotosTableViewCell.swift in Sources */,
 				24A2E12E28564B970058F6E6 /* MainCoordinator.swift in Sources */,
+				246609BA28928E7400406F22 /* Personage.swift in Sources */,
 				24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */,
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
 				24029CF92855E98700FD9CE6 /* ProfileCoordinator.swift in Sources */,
@@ -635,6 +661,7 @@
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
 				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
+				246609B8289287CF00406F22 /* Planet.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
 				24029CFB2855EB4800FD9CE6 /* NavigationRouter.swift in Sources */,
 				24029CCC2851092400FD9CE6 /* FeedModel.swift in Sources */,
@@ -655,6 +682,7 @@
 				2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */,
 				24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */,
 				243A28902837CE1D006430D3 /* PhotosViewController.swift in Sources */,
+				2466098E288C525E00406F22 /* ToDoItem.swift in Sources */,
 				24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */,
 				24029CFD2855F02C00FD9CE6 /* FeedCoordinator.swift in Sources */,
 				2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */,
