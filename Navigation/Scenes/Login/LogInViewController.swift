@@ -26,7 +26,7 @@ class LogInViewController: UIViewController {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 16))
         textField.leftView = padding
         textField.leftViewMode = .always
-        textField.placeholder = "Email or phone (artchemist@yandex.ru)"
+        textField.placeholder = "Enter email address"
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
@@ -36,6 +36,7 @@ class LogInViewController: UIViewController {
         textField.textColor = .black
         textField.autocapitalizationType = .none
         textField.delegate = self
+        textField.addTarget(self, action: #selector(checkLoginAndPasswordFields), for: .editingChanged)
         return textField
     }()
     
@@ -44,7 +45,7 @@ class LogInViewController: UIViewController {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 16))
         textField.leftView = padding
         textField.leftViewMode = .always
-        textField.placeholder = "Password (qwerty123)"
+        textField.placeholder = "Enter password"
         textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
@@ -54,14 +55,28 @@ class LogInViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.isSecureTextEntry = true
         textField.delegate = self
-        
+        textField.addTarget(self, action: #selector(checkLoginAndPasswordFields), for: .editingChanged)
         return textField
     }()
     
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(withTitle: "Log In") { [unowned self] in
-            logIn()
-        }
+        let button = CustomButton(withTitle: "Log In", action: logIn)
+
+        let image = UIImage(named: "blue_pixel")!
+        button.setBackgroundImage(image, for: .normal)
+        button.clipsToBounds = true
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.publisher(for: \.isHighlighted)
+            .sink { state in
+                button.alpha = state ? 0.8 : 1
+            }
+            .store(in: &subscriptions)
+        return button
+    }()
+    
+    private lazy var signupButton: CustomButton = {
+        let button = CustomButton(withTitle: "Sign Up", action: signUp)
         
         let image = UIImage(named: "blue_pixel")!
         button.setBackgroundImage(image, for: .normal)
@@ -89,16 +104,7 @@ class LogInViewController: UIViewController {
         
         return view
     }()
-    
-    private lazy var generatePasswordButton: CustomButton = {
-        let button = CustomButton(withTitle: "Подобрать пароль") { [weak viewModel] in
-            guard let viewModel = viewModel else { return }
-            viewModel.hackPassword()
-        }
-        button.configuration = .filled()
-        return button
-    }()
-    
+        
     //MARK: - Properties
     private var subscriptions: Set<AnyCancellable> = []
     private var keyboardSizePublisher: AnyPublisher<CGFloat, Never> {
@@ -137,11 +143,21 @@ class LogInViewController: UIViewController {
             .store(in: &subscriptions)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     //MARK: - Metods
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [logoImage, loginTextField, passwordTextField, loginButton, generatePasswordButton].forEach { contentView.addSubview($0) }
+        [logoImage, loginTextField,
+         passwordTextField, loginButton,
+         signupButton].forEach { contentView.addSubview($0) }
         contentView.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
         NSLayoutConstraint.activate([
@@ -176,17 +192,18 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            generatePasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
-            generatePasswordButton.leftAnchor.constraint(equalTo: loginButton.leftAnchor),
-            generatePasswordButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
-            generatePasswordButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            signupButton.heightAnchor.constraint(equalToConstant: 50),
+            signupButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            signupButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            signupButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+
         ])
     }
     
     private func bind(to viewModel: LoginViewModel) {
         viewModel.$errorMessage
             .receive(on: DispatchQueue.main)
-            .removeDuplicates()
             .sink { [weak self] message in
                 guard let message = message else { return }
                 
@@ -194,34 +211,23 @@ class LogInViewController: UIViewController {
             }
             .store(in: &subscriptions)
         
-        viewModel.$isGeneratingPassword
-            .receive(on: DispatchQueue.main)
+        viewModel.$isLoginButtonEnabled
             .removeDuplicates()
-            .sink { [weak self] isGenerating in
-                guard let self = self else { return }
-                self.generatePasswordButton.configuration?.showsActivityIndicator = isGenerating
-                self.loginTextField.isEnabled = !isGenerating
-                self.passwordTextField.isEnabled = !isGenerating
-                self.loginButton.isEnabled = !isGenerating
-                self.generatePasswordButton.isEnabled = !isGenerating
-            }
-            .store(in: &subscriptions)
-        
-        viewModel.$unlockedPassword
-            .sink { [weak self] password in
-                guard let self = self, let password = password else { return }
-                
-                self.passwordTextField.text = password
-                self.loginTextField.text = "artchemist@yandex.ru"
-                self.passwordTextField.isSecureTextEntry = false
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isEnabled in
+                self?.loginButton.isEnabled = isEnabled
+                self?.loginButton.alpha = isEnabled ? 1 : 0.6
+                self?.signupButton.isEnabled = isEnabled
+                self?.signupButton.alpha = isEnabled ? 1 : 0.6
+
             }
             .store(in: &subscriptions)
     }
     
     private func presentAlert(with message: String) {
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel)
-        alert.addAction(action)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancel)
         present(alert, animated: true)
     }
     
@@ -231,7 +237,24 @@ class LogInViewController: UIViewController {
               let password = passwordTextField.text,
               !email.isEmpty && !password.isEmpty else { return }
         
-        viewModel.login(email: email, password: password)
+        viewModel.checkCredentials(email: email, password: password)
+    }
+    
+    private func signUp() {
+        guard let email = loginTextField.text,
+              let password = passwordTextField.text,
+              !email.isEmpty && !password.isEmpty else { return }
+        
+        viewModel.signUp(email: email, password: password)
+    }
+    
+    @objc
+    private func checkLoginAndPasswordFields() {
+        guard let login = loginTextField.text, let password = passwordTextField.text else {
+            viewModel.isLoginButtonEnabled = false
+            return
+        }
+        viewModel.isLoginButtonEnabled = !login.isEmpty && !password.isEmpty
     }
 }
 
@@ -240,7 +263,6 @@ extension LogInViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-        
         return true
     }
 }

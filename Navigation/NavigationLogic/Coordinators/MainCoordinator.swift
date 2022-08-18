@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 enum TabBarPage {
     case feed
@@ -72,9 +73,15 @@ final class MainCoordinator: Coordinator {
             let navigationRouter = NavigationRouter(navigationController: navigationVC)
             let profileCoordinator = ProfileCoordinator(router: navigationRouter,
                                                         dependencyContainer: dependencyContainer)
-            let loginVC = dependencyContainer.makeLoginViewController(coordinator: profileCoordinator)
-
-            navigationVC.pushViewController(loginVC, animated: true)
+            
+            if let user = Auth.auth().currentUser {
+                let profileVC = dependencyContainer.makeProfileViewController(email: user.email!, coordinator: profileCoordinator)
+                navigationVC.pushViewController(profileVC, animated: true)
+            } else {
+                let loginVC = dependencyContainer.makeLoginViewController(coordinator: profileCoordinator)
+                
+                navigationVC.pushViewController(loginVC, animated: true)
+            }
             children.append(profileCoordinator)
         }
         

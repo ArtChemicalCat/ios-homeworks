@@ -27,6 +27,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 //MARK: - Views
     let profileImage: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(systemName: "person.circle")
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = .systemGray3
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = 75
