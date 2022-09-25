@@ -7,60 +7,43 @@
 
 import Foundation
 import StorageService
+import FirebaseAuth
 
 final class LoginViewModel {
     private let loginInspector: LoginInspector
     private weak var coordinator: ProfileCoordinator!
-    private let passwordGenerator = PasswordHacker()
     
+    @Published var isLoginButtonEnabled = false
     @Published var errorMessage: String?
-    @Published var isGeneratingPassword = false
-    @Published var unlockedPassword: String?
     
     init(loginFactory: LoginFactory, coordinator: ProfileCoordinator) {
         self.loginInspector = loginFactory.makeLoginInspector()
         self.coordinator = coordinator
     }
-    
-    func login(email: String, password: String) {
-        guard loginInspector.check(password: password, forLogin: email) else {
-            errorMessage = "Неверный логин и/или пароль"
-            return
+}
+
+extension LoginViewModel: CheckerServiceProtocol {
+    func checkCredentials(email: String, password: String) {
+        FirebaseAuth.Auth.auth().signIn(
+            withEmail: email, password: password
+        ) { [weak self] result, error in
+            if let error = error {
+                self?.errorMessage = error.localizedDescription
+            }
+            guard result != nil else { return }
+            self?.coordinator.showProfileVC(email: email)
         }
-        
-        coordinator.showProfileVC(email: email)
     }
     
-    func hackPassword() {
-        let randomGeneratedPassword = generatePassword(length: 3)
-        
-        PasswordValidator.shared.setNewPassword(randomGeneratedPassword)
-        
-        isGeneratingPassword = true
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            var password: String = ""
-            guard let self = self else { return }
-            
-            while password != randomGeneratedPassword {
-                password = self.passwordGenerator
-                    .generateBruteForce(password, fromArray: String.printable.map { String($0) })
-                print(password)
+    func signUp(email: String, password: String) {
+        FirebaseAuth.Auth.auth().createUser(
+            withEmail: email, password: password
+        ) { [weak self] result, error in
+            if let error = error {
+                self?.errorMessage = error.localizedDescription
             }
-            
-            DispatchQueue.main.async {
-                self.isGeneratingPassword = false
-                self.unlockedPassword = password
-            }
-            
+            guard result != nil else { return }
+            self?.coordinator.showProfileVC(email: email)
         }
-        
-    }
-    
-    private func generatePassword(length: Int) -> String {
-        var password = ""
-        (0..<length).forEach { _ in
-            password.append(String.printable.randomElement() ?? "a")
-        }
-        return password
     }
 }

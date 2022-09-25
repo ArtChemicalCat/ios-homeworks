@@ -32,6 +32,7 @@
 		243A28F52837EAEF006430D3 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 243A28EE2837EAEF006430D3 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		243A28FB2837EB66006430D3 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 243A28FA2837EB66006430D3 /* StorageService.h */; };
 		243A28FC2837EB7E006430D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8327E871A4000CBFBD /* Post.swift */; };
+		2457ECE928AA297300D0BBC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */; };
 		2466098E288C525E00406F22 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2466098D288C525E00406F22 /* ToDoItem.swift */; };
 		246609B8289287CF00406F22 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B7289287CF00406F22 /* Planet.swift */; };
 		246609BA28928E7400406F22 /* Personage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246609B928928E7400406F22 /* Personage.swift */; };
@@ -47,6 +48,7 @@
 		24A6F6A1286469470053A84B /* PasswordHacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6F6A0286469470053A84B /* PasswordHacker.swift */; };
 		24C7E9A1284BDC9500C99D06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A0284BDC9500C99D06 /* User.swift */; };
 		24C7E9A3284BDCA800C99D06 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7E9A2284BDCA800C99D06 /* UserService.swift */; };
+		24CEBE5628AA932900C77B58 /* CheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEBE5528AA932900C77B58 /* CheckerServiceProtocol.swift */; };
 		24D526DF284F784D00D98B9A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 24D526DE284F784D00D98B9A /* iOSIntPackage */; };
 		24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */; };
 		24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F37EA02850EA950045DB80 /* LoginFactory.swift */; };
@@ -106,6 +108,7 @@
 		243A28972837CEFE006430D3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		243A28EE2837EAEF006430D3 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		243A28FA2837EB66006430D3 /* StorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2466098D288C525E00406F22 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		246609B7289287CF00406F22 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		246609B928928E7400406F22 /* Personage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personage.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		24A6F6A0286469470053A84B /* PasswordHacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordHacker.swift; sourceTree = "<group>"; };
 		24C7E9A0284BDC9500C99D06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24C7E9A2284BDCA800C99D06 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		24CEBE5528AA932900C77B58 /* CheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServiceProtocol.swift; sourceTree = "<group>"; };
 		24E1ECCF27E5BF1700E7ADEE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		24F37EA02850EA950045DB80 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		24F37EA22850EAC70045DB80 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
+				2457ECE828AA297300D0BBC2 /* GoogleService-Info.plist */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
 			path = Navigation;
@@ -395,6 +400,7 @@
 				24F37EA02850EA950045DB80 /* LoginFactory.swift */,
 				24F37EA42850EAF30045DB80 /* PasswordValidator.swift */,
 				24F37EA22850EAC70045DB80 /* LoginInspector.swift */,
+				24CEBE5528AA932900C77B58 /* CheckerServiceProtocol.swift */,
 			);
 			path = PassvordValidation;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 			files = (
 				2431EDDD27CBB2E400D998F6 /* LaunchScreen.storyboard in Resources */,
 				2431EDDA27CBB2E400D998F6 /* Assets.xcassets in Resources */,
+				2457ECE928AA297300D0BBC2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +665,7 @@
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
 				24029CF92855E98700FD9CE6 /* ProfileCoordinator.swift in Sources */,
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
+				24CEBE5628AA932900C77B58 /* CheckerServiceProtocol.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
 				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
