@@ -18,6 +18,7 @@
 		24029CFD2855F02C00FD9CE6 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029CFC2855F02C00FD9CE6 /* FeedCoordinator.swift */; };
 		24029D01285608E100FD9CE6 /* PresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24029D00285608E100FD9CE6 /* PresentationStyle.swift */; };
 		24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24197EFF27DB922000BCC61D /* ProfileHeaderView.swift */; };
+		242393C628E0B0F8006BFEB6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 242393C528E0B0F8006BFEB6 /* RealmSwift */; };
 		2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD027CBB2E300D998F6 /* AppDelegate.swift */; };
 		2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2431EDD227CBB2E300D998F6 /* SceneDelegate.swift */; };
 		2431EDDA27CBB2E400D998F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2431EDD927CBB2E400D998F6 /* Assets.xcassets */; };
@@ -129,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242393C628E0B0F8006BFEB6 /* RealmSwift in Frameworks */,
 				24D526DF284F784D00D98B9A /* iOSIntPackage in Frameworks */,
 				243A28F42837EAEF006430D3 /* StorageService.framework in Frameworks */,
 				13E8545A8ABC687A303094C4 /* Pods_Navigation.framework in Frameworks */,
@@ -463,6 +465,7 @@
 			name = Navigation;
 			packageProductDependencies = (
 				24D526DE284F784D00D98B9A /* iOSIntPackage */,
+				242393C528E0B0F8006BFEB6 /* RealmSwift */,
 			);
 			productName = Navigation;
 			productReference = 2431EDCD27CBB2E300D998F6 /* Navigation.app */;
@@ -516,6 +519,7 @@
 			mainGroup = 2431EDC427CBB2E300D998F6;
 			packageReferences = (
 				24D526DD284F784D00D98B9A /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				242393C428E0B0F8006BFEB6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2431EDCE27CBB2E300D998F6 /* Products */;
 			projectDirPath = "";
@@ -954,6 +958,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		242393C428E0B0F8006BFEB6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		24D526DD284F784D00D98B9A /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
@@ -965,6 +977,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		242393C528E0B0F8006BFEB6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 242393C428E0B0F8006BFEB6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		24D526DE284F784D00D98B9A /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24D526DD284F784D00D98B9A /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
