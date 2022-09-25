@@ -7,6 +7,7 @@
 
 import Foundation
 import StorageService
+import RealmSwift
 
 final class LoginViewModel {
     private let loginInspector: LoginInspector
@@ -27,8 +28,23 @@ final class LoginViewModel {
             errorMessage = "Неверный логин и/или пароль"
             return
         }
-        
+        createUserSession(with: email, and: password)
         coordinator.showProfileVC(email: email)
+    }
+
+    private func createUserSession(with email: String, and password: String) {
+        guard let realm = try? Realm() else { return }
+        
+        do {
+            try realm.write {
+                let userSession = UserSession()
+                userSession.email = email
+                userSession.password = password
+                realm.add(userSession)
+            }
+        } catch {
+            print(error)
+        }
     }
     
     func hackPassword() {
