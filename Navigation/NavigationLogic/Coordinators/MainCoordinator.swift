@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum TabBarPage {
     case feed
@@ -70,14 +71,32 @@ final class MainCoordinator: Coordinator {
                         
         case .profile:
             let navigationRouter = NavigationRouter(navigationController: navigationVC)
-            let profileCoordinator = ProfileCoordinator(router: navigationRouter,
-                                                        dependencyContainer: dependencyContainer)
-            let loginVC = dependencyContainer.makeLoginViewController(coordinator: profileCoordinator)
+            let profileCoordinator = ProfileCoordinator(
+                router: navigationRouter,
+                dependencyContainer: dependencyContainer
+            )
+            let viewController = getControllerForProfileTab(with: profileCoordinator)
 
-            navigationVC.pushViewController(loginVC, animated: true)
+            navigationVC.pushViewController(viewController, animated: true)
             children.append(profileCoordinator)
         }
         
         return navigationVC
+    }
+    
+    private func getControllerForProfileTab(with coordinator: ProfileCoordinator) -> UIViewController {
+        if let userSession = readUserSession() {
+            return dependencyContainer.makeProfileViewController(
+                email: userSession.email,
+                coordinator: coordinator
+            )
+        } else {
+            return dependencyContainer.makeLoginViewController(coordinator: coordinator)
+        }
+    }
+    
+    private func readUserSession() -> UserSession? {
+        guard let realm = try? Realm() else { return nil }
+        return realm.objects(UserSession.self).first
     }
 }
