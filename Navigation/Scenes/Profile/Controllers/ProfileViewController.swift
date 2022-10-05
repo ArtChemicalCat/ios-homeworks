@@ -40,10 +40,12 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Properties
     private lazy var originalAvatarPosition: CGPoint = .zero
-    private let userService: UserService
     private let email: String
     
+    private let userService: UserService
+
     weak var coordinator: ProfileCoordinator!
+    
     
     //MARK: - Initialisers
     init(email: String, userService: UserService) {
@@ -162,6 +164,9 @@ extension ProfileViewController: UITableViewDataSource {
             let post = Post.posts[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.post = post
+            cell.likePostAction = {
+                FavouritePostsRepository.shared.save($0)
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.id, for: indexPath) as! PhotosTableViewCell
