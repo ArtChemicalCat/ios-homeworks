@@ -8,9 +8,10 @@
 import UIKit
 import RealmSwift
 
-enum TabBarPage {
+enum TabBarPage: CaseIterable {
     case feed
     case profile
+    case favourite
     
     var pageTitle: String {
         switch self {
@@ -18,6 +19,8 @@ enum TabBarPage {
             return "Лента"
         case .profile:
             return "Профиль"
+        case .favourite:
+            return "Понравившееся"
         }
     }
     
@@ -27,6 +30,8 @@ enum TabBarPage {
             return UIImage(systemName: "house.circle")
         case .profile:
             return UIImage(systemName: "person.circle")
+        case .favourite:
+            return UIImage(systemName: "heart.circle")
         }
     }
 }
@@ -46,9 +51,11 @@ final class MainCoordinator: Coordinator {
     //MARK: - Coordinator
     func present(animated: Bool) {
         let tabBarVC = TabBarViewController()
-        let pages: [TabBarPage] = [.profile, .feed]
         
-        tabBarVC.setViewControllers(pages.map { getTabController(page: $0) }, animated: animated)
+        tabBarVC.setViewControllers(
+            TabBarPage.allCases.map { getTabController(page: $0) },
+            animated: animated
+        )
         
         router.present(tabBarVC, animated: animated)
     }
@@ -79,6 +86,9 @@ final class MainCoordinator: Coordinator {
 
             navigationVC.pushViewController(viewController, animated: true)
             children.append(profileCoordinator)
+            
+        case .favourite:
+            navigationVC.pushViewController(FavoritePostsViewController(), animated: true)
         }
         
         return navigationVC

@@ -33,6 +33,12 @@
 		243A28F52837EAEF006430D3 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 243A28EE2837EAEF006430D3 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		243A28FB2837EB66006430D3 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 243A28FA2837EB66006430D3 /* StorageService.h */; };
 		243A28FC2837EB7E006430D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8327E871A4000CBFBD /* Post.swift */; };
+		2464DC1E28ED5522005A1DBE /* FavoritePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC1D28ED5522005A1DBE /* FavoritePostsViewController.swift */; };
+		2464DC2028ED5734005A1DBE /* Withable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC1F28ED5734005A1DBE /* Withable.swift */; };
+		2464DC2428ED5B88005A1DBE /* FavouritePostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC2328ED5B88005A1DBE /* FavouritePostsRepository.swift */; };
+		2464DC2728ED5D05005A1DBE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC2528ED5D05005A1DBE /* DataModel.xcdatamodeld */; };
+		2464DC3228ED8439005A1DBE /* PostCoreDataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC3128ED8439005A1DBE /* PostCoreDataModel+CoreDataClass.swift */; };
+		2464DC3428ED8476005A1DBE /* PostCoreDataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464DC3328ED8476005A1DBE /* PostCoreDataModel+CoreDataProperties.swift */; };
 		2480ED8627E8C386000CBFBD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */; };
 		24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30627D0079D0097DA17 /* TabBarViewController.swift */; };
 		24A2A30927D00D050097DA17 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2A30827D00D050097DA17 /* ProfileViewController.swift */; };
@@ -104,6 +110,12 @@
 		243A28972837CEFE006430D3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		243A28EE2837EAEF006430D3 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		243A28FA2837EB66006430D3 /* StorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		2464DC1D28ED5522005A1DBE /* FavoritePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePostsViewController.swift; sourceTree = "<group>"; };
+		2464DC1F28ED5734005A1DBE /* Withable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withable.swift; sourceTree = "<group>"; };
+		2464DC2328ED5B88005A1DBE /* FavouritePostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePostsRepository.swift; sourceTree = "<group>"; };
+		2464DC2628ED5D05005A1DBE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		2464DC3128ED8439005A1DBE /* PostCoreDataModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCoreDataModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2464DC3328ED8476005A1DBE /* PostCoreDataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCoreDataModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2480ED8327E871A4000CBFBD /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2480ED8527E8C386000CBFBD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		24A2A30627D0079D0097DA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -256,11 +268,11 @@
 		2431EDCF27CBB2E300D998F6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				24A6F69E286465100053A84B /* Secvices */,
-				24029CED2855E66E00FD9CE6 /* NavigationLogic */,
-				24F37EAC2850EFB40045DB80 /* Utilities */,
 				243A28992837E1DB006430D3 /* App */,
+				24029CED2855E66E00FD9CE6 /* NavigationLogic */,
 				24F37EA62850EB0C0045DB80 /* Scenes */,
+				24A6F69E286465100053A84B /* Secvices */,
+				24F37EAC2850EFB40045DB80 /* Utilities */,
 				2431EDDE27CBB2E400D998F6 /* Info.plist */,
 			);
 			path = Navigation;
@@ -299,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				243A28972837CEFE006430D3 /* UIView+Extension.swift */,
+				2464DC1F28ED5734005A1DBE /* Withable.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -311,6 +324,33 @@
 				243A28FA2837EB66006430D3 /* StorageService.h */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		2464DC1C28ED5504005A1DBE /* FavoritePosts */ = {
+			isa = PBXGroup;
+			children = (
+				2464DC1D28ED5522005A1DBE /* FavoritePostsViewController.swift */,
+			);
+			path = FavoritePosts;
+			sourceTree = "<group>";
+		};
+		2464DC2228ED5B71005A1DBE /* FavouritePostsRepository */ = {
+			isa = PBXGroup;
+			children = (
+				2464DC3028ED841B005A1DBE /* Model */,
+				2464DC2328ED5B88005A1DBE /* FavouritePostsRepository.swift */,
+				2464DC2528ED5D05005A1DBE /* DataModel.xcdatamodeld */,
+			);
+			path = FavouritePostsRepository;
+			sourceTree = "<group>";
+		};
+		2464DC3028ED841B005A1DBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2464DC3128ED8439005A1DBE /* PostCoreDataModel+CoreDataClass.swift */,
+				2464DC3328ED8476005A1DBE /* PostCoreDataModel+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		24A2E12F285661960058F6E6 /* Login */ = {
@@ -335,6 +375,7 @@
 		24A6F69E286465100053A84B /* Secvices */ = {
 			isa = PBXGroup;
 			children = (
+				2464DC2228ED5B71005A1DBE /* FavouritePostsRepository */,
 				24A6F69F2864651E0053A84B /* PassvordHacker */,
 				24C7E9AB284F416A00C99D06 /* PassvordValidation */,
 			);
@@ -379,6 +420,7 @@
 		24F37EA62850EB0C0045DB80 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2464DC1C28ED5504005A1DBE /* FavoritePosts */,
 				24A2E130285661A50058F6E6 /* Photos */,
 				24A2E12F285661960058F6E6 /* Login */,
 				24F37EA72850EB1B0045DB80 /* Feed */,
@@ -632,12 +674,15 @@
 			files = (
 				243A28962837CEC4006430D3 /* PhotosTableViewCell.swift in Sources */,
 				24A2E12E28564B970058F6E6 /* MainCoordinator.swift in Sources */,
+				2464DC1E28ED5522005A1DBE /* FavoritePostsViewController.swift in Sources */,
 				24F37EAA2850EC980045DB80 /* CustomButton.swift in Sources */,
 				243A28942837CE87006430D3 /* PhotoCollectionPreviewCell.swift in Sources */,
+				2464DC2028ED5734005A1DBE /* Withable.swift in Sources */,
 				24029CF92855E98700FD9CE6 /* ProfileCoordinator.swift in Sources */,
 				243A28982837CEFE006430D3 /* UIView+Extension.swift in Sources */,
 				24A2A30E27D0123E0097DA17 /* PostViewController.swift in Sources */,
 				243A28922837CE52006430D3 /* PhotoCollectionViewCell.swift in Sources */,
+				2464DC3428ED8476005A1DBE /* PostCoreDataModel+CoreDataProperties.swift in Sources */,
 				24029CF32855E6B400FD9CE6 /* CoordinatorProtocol.swift in Sources */,
 				2431EDD127CBB2E300D998F6 /* AppDelegate.swift in Sources */,
 				24029CFB2855EB4800FD9CE6 /* NavigationRouter.swift in Sources */,
@@ -647,7 +692,9 @@
 				24A2A30727D0079D0097DA17 /* TabBarViewController.swift in Sources */,
 				242393C928E0B2C9006BFEB6 /* UserSession.swift in Sources */,
 				24A2A30C27D00D5B0097DA17 /* FeedViewController.swift in Sources */,
+				2464DC3228ED8439005A1DBE /* PostCoreDataModel+CoreDataClass.swift in Sources */,
 				24A2E137285666E60058F6E6 /* DependencyContainer.swift in Sources */,
+				2464DC2428ED5B88005A1DBE /* FavouritePostsRepository.swift in Sources */,
 				24029CF72855E76800FD9CE6 /* SceneDelegateRouter.swift in Sources */,
 				24197F0027DB922000BCC61D /* ProfileHeaderView.swift in Sources */,
 				24A6F6A1286469470053A84B /* PasswordHacker.swift in Sources */,
@@ -660,6 +707,7 @@
 				24E1ECD027E5BF1700E7ADEE /* LogInViewController.swift in Sources */,
 				243A28902837CE1D006430D3 /* PhotosViewController.swift in Sources */,
 				24F37EA12850EA950045DB80 /* LoginFactory.swift in Sources */,
+				2464DC2728ED5D05005A1DBE /* DataModel.xcdatamodeld in Sources */,
 				24029CFD2855F02C00FD9CE6 /* FeedCoordinator.swift in Sources */,
 				2431EDD327CBB2E300D998F6 /* SceneDelegate.swift in Sources */,
 			);
@@ -1000,6 +1048,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2464DC2528ED5D05005A1DBE /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2464DC2628ED5D05005A1DBE /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 2464DC2628ED5D05005A1DBE /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2431EDC527CBB2E300D998F6 /* Project object */;
 }

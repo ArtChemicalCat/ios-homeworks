@@ -11,16 +11,13 @@ import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     //MARK: - Properties
-    private let imageProcessor = ImageProcessor()
+    var likePostAction: ((Post) -> Void)?
     
     var post: Post? {
         didSet {
             guard let post = post else { return }
             authorLabel.text = post.author
-            
-            if let image = UIImage(named: post.image) {
-                postImage.image = applyRandomFilter(to: image)
-            }
+            postImage.image = UIImage(named: post.image)
             
             postDescriptionTextView.text = post.description
             likesLabel.text = "Likes: \(post.likes)"
@@ -76,6 +73,7 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         configureContent()
+        addLikePostGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -83,15 +81,17 @@ class PostTableViewCell: UITableViewCell {
     }
     
     //MARK: - Metods
-    private func applyRandomFilter(to image: UIImage) -> UIImage {
-        let filter = ColorFilter.allCases.randomElement()!
-        var processedImage = image
-        imageProcessor.processImage(sourceImage: image, filter: filter) { image in
-            guard let image = image else { return }
-            processedImage = image
-        }
+    private func addLikePostGesture() {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(likePost))
+            .with { $0.numberOfTapsRequired = 2 }
+        addGestureRecognizer(doubleTap)
+    }
+    
+    @objc
+    private func likePost() {
+        guard let post else { return }
         
-        return processedImage
+        likePostAction?(post)
     }
     
     private func configureContent() {
